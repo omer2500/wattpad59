@@ -24,17 +24,20 @@ public class BrowseFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View view=inflater.inflate(R.layout.browse_fragment,container,false);
 
-        String [] BookCategories={"Action","Fantacy","Horror"};
+        // book categories array
+        String [] BookCategories={"Action","Fantacy","Horror","comedy","kids","Romance","war"};
 
+        //attach the listview to the view on xml
         ListView listView = (ListView) view.findViewById(R.id.CategoriesMenu);
 
-
+        //making array strings show in listView
         ArrayAdapter<String> ListViewAdapter=new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
                 BookCategories
         );
 
+        //setting the adapter
         listView.setAdapter(ListViewAdapter);
 
 
