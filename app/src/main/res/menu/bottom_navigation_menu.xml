@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/ic_arrow"
+        android:id="@+id/ic_home"
         android:icon="@drawable/ic_android"
         android:title="@string/home"
         />
 
     <item
-        android:id="@+id/ic_android"
+        android:id="@+id/ic_library"
         android:icon="@drawable/ic_library_books"
-        android:title="@string/libarary"
+        android:title="@string/library"
         />
     <item
-        android:id="@+id/ic_profile"
+        android:id="@+id/ic_add_story_info"
         android:icon="@drawable/ic_android"
-        android:title="@string/profile"
+        android:title="@string/add_story_info"
         />
 
 

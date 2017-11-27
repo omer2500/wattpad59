@@ -9,9 +9,10 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="profile">profile</string>
-    <string name="libarary">libarary</string>
-    <string name="home">home</string>
+    <string name="library">Library</string>
+    <string name="home">Home</string>
     <string name="browse">Browse</string>
     <string name="tab_text_3">Tab 3</string>
     <string name="title_activity_main3">Main3Activity</string>
+    <string name="add_story_info">Add Story Info</string>
 </resources>
