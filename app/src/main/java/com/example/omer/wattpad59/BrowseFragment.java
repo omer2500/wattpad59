@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.List;
-
 /**
  * Created by omer on 26/11/2017.
  */
@@ -22,7 +20,7 @@ public class BrowseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.browse_fragment,container,false);
+        View view=inflater.inflate(R.layout.BrowseFragment,container,false);
 
         // book categories array
         String [] BookCategories={"Action","Fantacy","Horror","comedy","kids","Romance","war"};
