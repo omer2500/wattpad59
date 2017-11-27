@@ -3,18 +3,18 @@
 
     <item
         android:id="@+id/ic_home"
-        android:icon="@drawable/ic_android"
+        android:icon="@drawable/ic_home"
         android:title="@string/home"
         />
 
     <item
         android:id="@+id/ic_library"
-        android:icon="@drawable/ic_library_books"
+        android:icon="@drawable/ic_library"
         android:title="@string/library"
         />
     <item
         android:id="@+id/ic_add_story_info"
-        android:icon="@drawable/ic_android"
+        android:icon="@drawable/ic_add_story_info"
         android:title="@string/add_story_info"
         />
 
