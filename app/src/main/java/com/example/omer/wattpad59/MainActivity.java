@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
             BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
 
 
-
 //*********************************FRAGMENT*******************************************************
             mSectionsPageAdapter=new SectionsPageAdapter(getSupportFragmentManager());
 
