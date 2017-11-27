@@ -11,13 +11,13 @@ import android.view.ViewGroup;
  * Created by omer on 26/11/2017.
  */
 
-public class browse_fragment extends Fragment {
-    private static final String TAG ="Browse_fragment";
+public class RecommendedFragment extends Fragment {
+    private static final String TAG ="Recommanded_fragment";
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
-        View view=inflater.inflate(R.layout.browse_fragment,container,false);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstancecState){
+        View view=inflater.inflate(R.layout.recommanded_fragment,container,false);
 
         return view;
     }

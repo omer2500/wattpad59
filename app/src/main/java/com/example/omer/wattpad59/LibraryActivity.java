@@ -3,11 +3,11 @@ package com.example.omer.wattpad59;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class home_activity extends AppCompatActivity {
+public class LibraryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_activity);
+        setContentView(R.layout.activity_profile_activity);
     }
 }
