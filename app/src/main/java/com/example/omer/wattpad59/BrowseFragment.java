@@ -23,7 +23,7 @@ public class BrowseFragment extends Fragment {
         View view=inflater.inflate(R.layout.browse_fragment,container,false);
 
         // book categories array
-        String [] BookCategories={"Action","Fantacy","Horror","comedy","kids","Romance","war"};
+        String [] BookCategories={"Action","Fantasy","Horror","comedy","kids","Romance","war"};
 
         //attach the listview to the view on xml
         ListView listView = (ListView) view.findViewById(R.id.CategoriesMenu);

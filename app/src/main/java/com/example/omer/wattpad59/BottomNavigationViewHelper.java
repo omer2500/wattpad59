@@ -8,7 +8,7 @@ package com.example.omer.wattpad59;
 
 public class BottomNavigationViewHelper {
 
-    static void removeShiftMode(BottomNavigationView view) {
+    public static void removeShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {
             Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");

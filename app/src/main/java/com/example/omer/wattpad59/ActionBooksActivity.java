@@ -5,5 +5,5 @@ package com.example.omer.wattpad59;
  */
 
 public class ActionBooksActivity {
-    ss
+
 }

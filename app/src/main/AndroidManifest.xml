@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LibraryActivity" />
+        <activity android:name=".AddStoryInfoActivity" />
     </application>
 
 </manifest>
