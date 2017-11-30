@@ -1,11 +1,13 @@
 package com.example.omer.wattpad59;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -38,6 +40,40 @@ public class BrowseFragment extends Fragment {
         //setting the adapter
         listView.setAdapter(ListViewAdapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position==0){
+                    Intent myintent=new Intent(getActivity(),ActionBooksActivity.class);
+                    startActivityForResult(myintent,0);
+                }
+                if(position==1){
+                    Intent myintent=new Intent(getActivity(),FantacyBooksActivity.class);
+                    startActivityForResult(myintent,0);
+                }
+                if(position==2){
+                    Intent myintent=new Intent(getActivity(),HorrorBooksActivity.class);
+                    startActivityForResult(myintent,0);
+                }
+                if(position==3){
+                    Intent myintent=new Intent(getActivity(),ComedyBooksActivity.class);
+                    startActivityForResult(myintent,0);
+                }
+                if(position==4){
+                    Intent myintent=new Intent(getActivity(),KidsBooksActivity.class);
+                    startActivityForResult(myintent,0);
+                }
+                if(position==5){
+                    Intent myintent=new Intent(getActivity(),RomanceBooksActivity.class);
+                    startActivityForResult(myintent,0);
+                }
+                if(position==6){
+                    Intent myintent=new Intent(getActivity(),WarBooksActivity.class);
+                    startActivityForResult(myintent,0);
+                }
+            }
+        });
 
         return view;
     }
