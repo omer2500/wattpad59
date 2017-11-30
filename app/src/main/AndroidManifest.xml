@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".WarBooksActivity" />
         <activity android:name=".FantacyBooksActivity" />
         <activity android:name=".ActionBooksActivity" />
         <activity android:name=".LibraryActivity" />
