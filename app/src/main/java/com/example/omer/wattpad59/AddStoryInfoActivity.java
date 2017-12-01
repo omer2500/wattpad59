@@ -22,8 +22,8 @@ public class AddStoryInfoActivity extends AppCompatActivity {
 
         setTitle(R.string.add_story_info); //set toolbar title
 
-        TextView title = (TextView) findViewById(R.id.activityTitleAddStoryInfo);
-        title.setText("This is activity add story info");
+        //TextView title = (TextView) findViewById(R.id.activityTitleAddStoryInfo);
+        //title.setText("This is activity add story info");
 
         //***************************BOTTOM NAVIGATION BAR*****************************************************
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavView_Bar);

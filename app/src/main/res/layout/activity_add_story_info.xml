@@ -13,15 +13,61 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:layout_editor_absoluteY="4dp" />
 
-    <TextView
-        android:id="@+id/activityTitleAddStoryInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add story info"
-        app:layout_anchor="@+id/container"
-        app:layout_anchorGravity="right|center"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="195dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="461dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="360dp"
+            android:layout_height="120dp"
+            android:background="@color/lightGrey">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="70dp"
+                android:layout_height="100dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:background="@color/tabIndicator" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/imageView4"
+                android:text="Add a cover"
+                android:textColor="@color/colorPrimary" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Story Title"
+            android:paddingTop="40dp" />
+
+        <EditText
+            android:id="@+id/storyTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Story Description" />
+
+        <EditText
+            android:id="@+id/storyDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" />
+
+    </LinearLayout>
 
 
     <RelativeLayout

@@ -7,4 +7,5 @@
     <color name="colorGrey">#c3c3c3 </color>
     <color name="tabText">#333333</color>
     <color name="tabIndicator">#00B2B2</color>
+    <color name="lightGrey">#F8F7F2</color>
 </resources>
