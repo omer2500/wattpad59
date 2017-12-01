@@ -24,7 +24,7 @@ public class KidsBooksActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.kids_books_activity);
+        setContentView(R.layout.books_activity);
 
         //connecting the view to the ativity
         ListView listView=(ListView)findViewById(R.id.listView);

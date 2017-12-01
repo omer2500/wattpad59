@@ -24,7 +24,7 @@ public class WarBooksActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.war_books_activity);
+        setContentView(R.layout.books_activity);
 
         //connecting the view to the ativity
         ListView listView=(ListView)findViewById(R.id.listView);

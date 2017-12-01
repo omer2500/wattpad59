@@ -1,6 +1,5 @@
 package com.example.omer.wattpad59;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -25,7 +24,7 @@ public class ActionBooksActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.action_books_activity);
+        setContentView(R.layout.books_activity);
 
         //connecting the view to the ativity
         ListView listView=(ListView)findViewById(R.id.listView);
