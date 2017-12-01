@@ -16,7 +16,7 @@ import android.widget.ListView;
  */
 
 public class BrowseFragment extends Fragment {
-    private static final String TAG ="Browse_fragment";
+    private static final String TAG ="Browse_fragment1";
 
 
     @Nullable
