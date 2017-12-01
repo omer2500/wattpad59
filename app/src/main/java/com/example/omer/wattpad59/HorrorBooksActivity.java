@@ -26,6 +26,8 @@ public class HorrorBooksActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.books_activity);
 
+        setTitle(R.string.horror); //set toolbar title
+
         //connecting the view to the ativity
         ListView listView=(ListView)findViewById(R.id.listView);
 

@@ -31,6 +31,8 @@ public class MyBooks_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mybooks_activity);
 
+        setTitle(R.string.myBooks); //set toolbar title
+
         //connecting the view to the ativity
         ListView listView = (ListView) findViewById(R.id.listView);
 
@@ -66,7 +68,7 @@ public class MyBooks_Activity extends AppCompatActivity {
                         startActivity(intent2);
                         break;
 
-                    case R.id.ic_mybooks:
+                    case R.id.ic_my_books:
                         Intent intent3 = new Intent(MyBooks_Activity.this, MyBooks_Activity.class);
                         startActivity(intent3);
                         break;

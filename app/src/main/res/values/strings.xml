@@ -15,5 +15,12 @@
     <string name="tab_text_3">Tab 3</string>
     <string name="title_activity_main3">Main3Activity</string>
     <string name="add_story_info">Add Story Info</string>
-    <string name="myBooks">MyBooks</string>
+    <string name="myBooks">My Books</string>
+    <string name="action">Action</string>
+    <string name="fantasy">Fantasy</string>
+    <string name="horror">Horror</string>
+    <string name="comedy">Comedy</string>
+    <string name="kids">Kids</string>
+    <string name="romance">Romance</string>
+    <string name="war">War</string>
 </resources>

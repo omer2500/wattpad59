@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setTitle(R.string.home); //set toolbar title
+
             Log.d(TAG,"onCreate: String.");
 
 
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent2);
                             break;
 
-                        case R.id.ic_mybooks:
+                        case R.id.ic_my_books:
                             Intent intent3 = new Intent(MainActivity.this, MyBooks_Activity.class);
                             startActivity(intent3);
                             break;

@@ -20,6 +20,8 @@ public class AddStoryInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_story_info);
 
+        setTitle(R.string.add_story_info); //set toolbar title
+
         TextView title = (TextView) findViewById(R.id.activityTitleAddStoryInfo);
         title.setText("This is activity add story info");
 
@@ -50,7 +52,7 @@ public class AddStoryInfoActivity extends AppCompatActivity {
                         startActivity(intent2);
                         break;
 
-                    case R.id.ic_mybooks:
+                    case R.id.ic_my_books:
                         Intent intent3 = new Intent(AddStoryInfoActivity.this, MyBooks_Activity.class);
                         startActivity(intent3);
                         break;

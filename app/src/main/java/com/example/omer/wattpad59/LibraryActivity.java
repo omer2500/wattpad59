@@ -18,6 +18,8 @@ public class LibraryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
 
+        setTitle(R.string.library); //set toolbar title
+
         TextView title = (TextView) findViewById(R.id.activityTitleLibrary);
         title.setText("This is activity library");
 
@@ -48,7 +50,7 @@ public class LibraryActivity extends AppCompatActivity {
                         startActivity(intent2);
                         break;
 
-                    case R.id.ic_mybooks:
+                    case R.id.ic_my_books:
                         Intent intent3 = new Intent(LibraryActivity.this, MyBooks_Activity.class);
                         startActivity(intent3);
                         break;
