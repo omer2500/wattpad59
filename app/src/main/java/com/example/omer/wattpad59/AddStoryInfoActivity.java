@@ -49,6 +49,11 @@ public class AddStoryInfoActivity extends AppCompatActivity {
                         Intent intent2 = new Intent(AddStoryInfoActivity.this, AddStoryInfoActivity.class);
                         startActivity(intent2);
                         break;
+
+                    case R.id.ic_mybooks:
+                        Intent intent3 = new Intent(AddStoryInfoActivity.this, MyBooks_Activity.class);
+                        startActivity(intent3);
+                        break;
                 }
                 return false;
             }

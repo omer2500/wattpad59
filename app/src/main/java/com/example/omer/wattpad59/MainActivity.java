@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     switch (item.getItemId()){
                         case R.id.ic_home:
+                            Intent intent = new Intent(MainActivity.this, LibraryActivity.class);
+                            startActivity(intent);
                             break;
 
                         case R.id.ic_library:
@@ -50,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.ic_add_story_info:
                             Intent intent2 = new Intent(MainActivity.this, AddStoryInfoActivity.class);
                             startActivity(intent2);
+                            break;
+
+                        case R.id.ic_mybooks:
+                            Intent intent3 = new Intent(MainActivity.this, MyBooks_Activity.class);
+                            startActivity(intent3);
                             break;
                     }
                     return false;

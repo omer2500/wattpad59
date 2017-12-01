@@ -15,4 +15,5 @@
     <string name="tab_text_3">Tab 3</string>
     <string name="title_activity_main3">Main3Activity</string>
     <string name="add_story_info">Add Story Info</string>
+    <string name="myBooks">MyBooks</string>
 </resources>
