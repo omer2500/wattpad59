@@ -24,7 +24,7 @@ public class FantacyBooksActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.action_books_activity);
+        setContentView(R.layout.fantacy_books_activity);
 
         //connecting the view to the ativity
         ListView listView=(ListView)findViewById(R.id.listView);
