@@ -24,6 +24,7 @@ public class LibraryActivity extends AppCompatActivity {
         //***************************BOTTOM NAVIGATION BAR*****************************************************
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavView_Bar);
         BottomNavigationViewHelper.removeShiftMode(bottomNavigationView);
+        //bottom navigation color animation
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
