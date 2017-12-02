@@ -4,16 +4,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 
 /**
  * Created by omer on 27/11/2017.
  */
 
 public class ActionBooksActivity extends AppCompatActivity {
+
+    ListView listView;
+    CustomAdapter customAdapter;
 
     int [] images={R.drawable.actionbook1,R.drawable.actionbook2,R.drawable.actionbook3,R.drawable.actionbook4,R.drawable.actionbook5};
 
@@ -28,12 +33,19 @@ public class ActionBooksActivity extends AppCompatActivity {
 
         setTitle(R.string.action); //set toolbar title
 
-        //connecting the view to the ativity
-        ListView listView=(ListView)findViewById(R.id.listView);
+        //connecting the view to the activity
+        listView=(ListView)findViewById(R.id.listView);
 
-        CustomAdapter customAdapter=new CustomAdapter();
+        customAdapter=new CustomAdapter();
 
         listView.setAdapter(customAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
     }
 
     class CustomAdapter extends BaseAdapter{
