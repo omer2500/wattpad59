@@ -29,6 +29,7 @@
         <activity android:name=".LibraryActivity" />
         <activity android:name=".MyBooks_Activity" />
         <activity android:name=".AddStoryInfoActivity" />
+        <activity android:name=".ReadBooksActivity"></activity>
     </application>
 
 </manifest>
