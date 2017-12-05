@@ -14,6 +14,8 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
+        DatabaseActivity db;
+
         private static final String TAG="MainActivity";
 
         private SectionsPageAdapter mSectionsPageAdapter;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = new DatabaseActivity(this);
 
         setTitle(R.string.home); //set toolbar title
 
