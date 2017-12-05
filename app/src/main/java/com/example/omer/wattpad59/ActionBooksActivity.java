@@ -1,15 +1,11 @@
 package com.example.omer.wattpad59;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -18,72 +14,28 @@ import android.widget.TextView;
 
 public class ActionBooksActivity extends AppCompatActivity {
 
-    ListView listView;
-    CustomAdapter customAdapter;
 
-    int [] images={R.drawable.actionbook1,R.drawable.actionbook2,R.drawable.actionbook3,R.drawable.actionbook4,R.drawable.actionbook5};
-
-    String [] names={"BREAKER","The Eye Of Minds","Loose Ends", "Hunger Games","In The Blood"};
-
-    String[] description={"this is book 1","this is book 2","this is book 3","this is book 4","this is book 5"};
-
-
-    protected void onCreate(Bundle savedInstanceState){
+    private ListView bookListView;
+    private customAdapter adapter;
+    private List<bookTemplate> bookList;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.books_activity);
 
-        setTitle(R.string.action); //set toolbar title
+        bookListView = (ListView)findViewById(R.id.listView);
 
-        //connecting the view to the activity
-        listView=(ListView)findViewById(R.id.listView);
+        bookList = new ArrayList<>();
+        //Add sample data for list
+        //We can get data from DB, webservice here
+        bookList.add(new bookTemplate(R.drawable.actionbook1,"Breaker","this is book1"));
+        bookList.add(new bookTemplate(R.drawable.actionbook2,"The Eye Of Minds","this is book2"));
+        bookList.add(new bookTemplate(R.drawable.actionbook3,"Loose Ends","this is book3"));
+        bookList.add(new bookTemplate(R.drawable.actionbook4,"Hunger Games","this is book4"));
+        bookList.add(new bookTemplate(R.drawable.actionbook5,"In The Blood","this is book5"));
 
-        customAdapter=new CustomAdapter();
-
-        listView.setAdapter(customAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(ActionBooksActivity.this, ReadBooksActivity.class);
-                startActivity(intent);
-            }
-        });
+        //Init adapter
+        adapter = new customAdapter(getApplicationContext(), bookList);
+        bookListView.setAdapter(adapter);
     }
-
-    class CustomAdapter extends BaseAdapter{
-
-        //return the size of the list
-        @Override
-        public int getCount() {
-            return images.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            view=getLayoutInflater().inflate(R.layout.custom_listview,null);
-
-            //assign the views for a variable to set things up
-            ImageView imageView=(ImageView)view.findViewById(R.id.imageView);
-            TextView bookName=(TextView)view.findViewById(R.id.bookName);
-            TextView bookDesc=(TextView)view.findViewById(R.id.bookDescription);
-
-            //setting the text and image of the custom view
-            imageView.setImageResource(images[i]);
-            bookName.setText(names[i]);
-            bookDesc.setText(description[i]);
-
-            return view;
-        }
-    }
-
 }
