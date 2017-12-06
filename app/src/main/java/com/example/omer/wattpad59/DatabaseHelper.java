@@ -1,17 +1,21 @@
 package com.example.omer.wattpad59;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.nfc.Tag;
+import android.util.Log;
 
 /**
  * Created by Yarden-PC on 05-Dec-17.
  */
 
-public class DatabaseActivity extends SQLiteOpenHelper{
+public class DatabaseHelper extends SQLiteOpenHelper{
 
+    private static final String TAG = "DatabaseHelper";
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "MyDB.db";
+    private static final String DATABASE_NAME = "MyDB";
 
     // Books table
     private static final String BOOKS_TABLE_NAME = "books";
@@ -22,7 +26,7 @@ public class DatabaseActivity extends SQLiteOpenHelper{
     private static final String BOOKS_COLUMN_5__TEXT = "text";
 
 
-    public DatabaseActivity (Context context){
+    public DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -48,6 +52,21 @@ public class DatabaseActivity extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS " + BOOKS_TABLE_NAME);
 
         onCreate(db);
+    }
+
+    public boolean addData(String item){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(BOOKS_COLUMN_2_NAME,item);
+
+        Log.d(TAG, "addData: Adding " + item + "to" + BOOKS_TABLE_NAME);
+        long result = db.insert(BOOKS_TABLE_NAME,null, contentValues);
+
+        if (result == -1){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 
