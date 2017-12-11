@@ -7,8 +7,8 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +27,7 @@ public class AddStoryInfoActivity extends FragmentActivity {
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
     Button btn;
+    FragmentManager fmanager;
 
 
     @Override

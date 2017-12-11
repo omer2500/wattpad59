@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.nfc.Tag;
 import android.util.Log;
 
 /**
@@ -16,6 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String TAG = "DatabaseHelper";
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "MyDB";
+    private SQLiteDatabase db;
 
     // Books table
     private static final String BOOKS_TABLE_NAME = "books";
@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String BOOKS_COLUMN_2_NAME = "name";
     private static final String BOOKS_COLUMN_3_DESCRIPTION = "description";
     private static final String BOOKS_COLUMN_4__IMAGE = "image";
-    private static final String BOOKS_COLUMN_5__TEXT = "text";
+    private static final String BOOKS_COLUMN_5__CONTENT = "content";
 
 
     public DatabaseHelper(Context context){
@@ -34,16 +34,28 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         try{
             // SQL statement to create item table
-            String CREATE_BOOKS_TABLE = "create table " + BOOKS_TABLE_NAME + "("
+            String CREATE_BOOKS_TABLE = "create table if not exists " + BOOKS_TABLE_NAME + "("
                     + BOOKS_COLUMN_1_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + BOOKS_COLUMN_2_NAME + " TEXT, "
                     + BOOKS_COLUMN_3_DESCRIPTION + " TEXT, "
                     + BOOKS_COLUMN_4__IMAGE + " BLOB, "
-                    + BOOKS_COLUMN_5__TEXT + " TEXT)";
+                    + BOOKS_COLUMN_5__CONTENT + " CONTENT)";
             db.execSQL(CREATE_BOOKS_TABLE);
 
         }catch(Throwable throwable){
             throwable.printStackTrace();
+        }
+    }
+
+    //open database
+    public  void open(){
+        db = getWritableDatabase();
+    }
+
+    //close database if open
+    public void close(){
+        if(db!=null){
+            db.close();
         }
     }
 
@@ -54,19 +66,22 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public boolean addData(String item){
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(BOOKS_COLUMN_2_NAME,item);
 
-        Log.d(TAG, "addData: Adding " + item + "to" + BOOKS_TABLE_NAME);
-        long result = db.insert(BOOKS_TABLE_NAME,null, contentValues);
+    public boolean addNewBookInfo(BookInfo book){
+        long result = -1;
+        ContentValues values = new ContentValues();
+        values.put(BOOKS_COLUMN_1_ID, book.getId());
+        values.put(BOOKS_COLUMN_2_NAME, book.getName());
+        values.put(BOOKS_COLUMN_3_DESCRIPTION, book.getDescription());
+        values.put(BOOKS_COLUMN_4__IMAGE, book.getImageAsByteArray());
+        values.put(BOOKS_COLUMN_5__CONTENT, book.getContent());
 
-        if (result == -1){
-            return false;
-        }else{
+        result = db.insert(BOOKS_TABLE_NAME,null,values);
+        if(result > 0){
             return true;
         }
+        return false;
+
     }
 
 

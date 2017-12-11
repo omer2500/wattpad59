@@ -21,15 +21,32 @@ public class MainActivity extends AppCompatActivity {
         private SectionsPageAdapter mSectionsPageAdapter;
 
         private ViewPager mViewPager;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyInfoManager.getInstance().openDatabase(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyInfoManager.getInstance().openDatabase(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        db = new DatabaseHelper(this);
+
+        MyInfoManager.getInstance().openDatabase(this);
 
         setTitle(R.string.home); //set toolbar title
 
             Log.d(TAG,"onCreate: String.");
+
+
+
 
 
 //***************************BOTTOM NAVIGATION BAR*****************************************************
