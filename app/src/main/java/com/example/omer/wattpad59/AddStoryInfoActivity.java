@@ -16,6 +16,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by Yarden-PC on 27-Nov-17.
  */
@@ -28,6 +30,7 @@ public class AddStoryInfoActivity extends FragmentActivity {
     Uri imageUri;
     Button btn;
     FragmentManager fmanager;
+    private List<BookInfo> booksList;
 
 
     @Override
@@ -90,6 +93,10 @@ public class AddStoryInfoActivity extends FragmentActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                BookInfo book = new BookInfo("a","b","c",null,"d");
+                MyInfoManager.getInstance().addNewBook(book);
+                bookList = MyInfoManager.getInstance().getAllBooks();
+
 
 
             }

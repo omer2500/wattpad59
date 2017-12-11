@@ -22,17 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         private ViewPager mViewPager;
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        MyInfoManager.getInstance().openDatabase(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MyInfoManager.getInstance().openDatabase(this);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +85,20 @@ public class MainActivity extends AppCompatActivity {
             TabLayout tabLayout= (TabLayout) findViewById(R.id.tabs);
             tabLayout.setupWithViewPager(mViewPager);
         }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyInfoManager.getInstance().openDatabase(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyInfoManager.getInstance().closeDatabase();
+    }
+
+
 
     private void setupViewPager(ViewPager viewPager){
         SectionsPageAdapter adapter=new SectionsPageAdapter(getSupportFragmentManager());

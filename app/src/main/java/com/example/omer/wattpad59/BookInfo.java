@@ -1,6 +1,7 @@
 package com.example.omer.wattpad59;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.sql.Blob;
@@ -11,21 +12,29 @@ import java.sql.Blob;
 
 public class BookInfo {
 
-    int id;
+    String id;
     String name;
     String description;
     Bitmap image;
     String content;
 
-    public BookInfo(int id, String name, String description, Bitmap image, String content) {
-        this.id = id;
+    public BookInfo(String id, String name, String description, Bitmap image, String content) {
+        //this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.content = content;
     }
 
-    public int getId() {
+    private String generateID(){
+        return "book_" + System.currentTimeMillis();
+    }
+
+    public BookInfo(){
+        this.id = generateID();
+    }
+
+    public String getId() {
         return id;
     }
 
@@ -45,7 +54,7 @@ public class BookInfo {
         return content;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -74,5 +83,11 @@ public class BookInfo {
             res = outputStream.toByteArray();
         }
         return res;
+    }
+
+    public void setImageFromByteArray(byte[] imageFromByteArray) {
+        if(imageFromByteArray!=null){
+            image = BitmapFactory.decodeByteArray(imageFromByteArray, 0, imageFromByteArray.length);
+        }
     }
 }

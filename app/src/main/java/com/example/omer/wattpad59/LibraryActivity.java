@@ -11,7 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class LibraryActivity extends AppCompatActivity {
+
+    private List<BookInfo> booksList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

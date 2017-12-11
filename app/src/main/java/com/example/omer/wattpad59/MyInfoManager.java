@@ -2,9 +2,11 @@ package com.example.omer.wattpad59;
 
 import android.content.Context;
 
+import java.util.List;
+
 /**
  * Created by Yarden-PC on 11-Dec-17.
- * This is singeltone
+ * This is the SINGLE TONE
  */
 
 public class MyInfoManager {
@@ -37,5 +39,9 @@ public class MyInfoManager {
 
     public boolean addNewBook(BookInfo book){
         return databaseHelper.addNewBookInfo(book);
+    }
+
+    public List<BookInfo> getAllBooks(){
+        return databaseHelper.getAllBooks();
     }
 }

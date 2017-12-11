@@ -14,16 +14,6 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <TextView
-        android:id="@+id/activityTitleLibrary"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:text="Add story info"
-        app:layout_anchor="@+id/container"
-        app:layout_anchorGravity="right|center"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="195dp" />
-
 
     <RelativeLayout
         android:layout_width="match_parent"
