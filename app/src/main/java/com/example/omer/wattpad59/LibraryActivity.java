@@ -24,8 +24,6 @@ public class LibraryActivity extends AppCompatActivity {
 
         setTitle(R.string.library); //set toolbar title
 
-        TextView title = (TextView) findViewById(R.id.activityTitleLibrary);
-        title.setText("This is activity library");
 
         //***************************BOTTOM NAVIGATION BAR*****************************************************
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavView_Bar);

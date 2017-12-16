@@ -1,6 +1,9 @@
 package com.example.omer.wattpad59;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,8 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -24,22 +30,30 @@ import java.util.List;
 
 public class AddStoryInfoActivity extends FragmentActivity {
 
-    ImageView imageView;
+    DatabaseHelper databaseHelper;
+    private EditText storyTitle, storyDescription, storyContent;
+    private Button publishButton;
+    private ImageView imageView;
     TextView textView;
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
-    Button btn;
     FragmentManager fmanager;
     private List<BookInfo> booksList;
+    private ListView postsListView;
+    private Context context;
+    customAdapter adapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_story_info);
-
+        storyTitle = findViewById(R.id.storyTitle);
+        storyDescription = findViewById(R.id.storyDescription);
+        storyContent = findViewById(R.id.storyContent);
         imageView = (ImageView)findViewById(R.id.addCoverImageView) ;
         textView = (TextView)findViewById(R.id.addCoverTextView) ;
+        publishButton = findViewById(R.id.publishButton);
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,23 +100,30 @@ public class AddStoryInfoActivity extends FragmentActivity {
                 return false;
             }
         });
-        //***************************BOTTOM NAVIGATION BAR*****************************************************
 
 
-        btn = findViewById(R.id.nextButton);
-        btn.setOnClickListener(new View.OnClickListener() {
+        //save the data inserted when clicking on the publish button
+        publishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BookInfo book = new BookInfo("a","b","c",null,"d");
-                MyInfoManager.getInstance().addNewBook(book);
-                bookList = MyInfoManager.getInstance().getAllBooks();
+                String title = storyTitle.getText().toString();
+                String description = storyDescription.getText().toString();
+                Bitmap image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                String content = storyContent.getText().toString();
+                if(storyTitle.length() !=0 && storyDescription.length() !=0 && storyContent.length() !=0){
+                    addData(title, description, image, content);
+                    storyTitle.setText("");
+                    storyDescription.setText("");
+                    imageView.setImageURI(null);
+                    storyContent.setText("");
+                    toastMessage("Your story was successfully published!");
+                }else{
+                    toastMessage("You must fill everything");
+                }
 
-
-
+                //booksList = MyInfoManager.getInstance().getAllBooks();
             }
         });
-
-
     }
 
     //add a cover image from the gallery/camera
@@ -119,7 +140,17 @@ public class AddStoryInfoActivity extends FragmentActivity {
             imageUri = data.getData();
             imageView.setImageURI(imageUri);
         }
+    }
 
+    //create a new book and insert in into the DB
+    public void addData(String title, String description, Bitmap image, String content){
+        BookInfo book = new BookInfo(title, description, image, content);
+        MyInfoManager.getInstance().addNewBook(book);
+    }
+
+    //create customizable toast
+    private void toastMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT);
     }
 
 }

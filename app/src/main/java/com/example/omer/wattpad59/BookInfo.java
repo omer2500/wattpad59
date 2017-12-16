@@ -18,8 +18,8 @@ public class BookInfo {
     Bitmap image;
     String content;
 
-    public BookInfo(String id, String name, String description, Bitmap image, String content) {
-        //this.id = id;
+    public BookInfo(String name, String description, Bitmap image, String content) {
+        this.id = generateID();
         this.name = name;
         this.description = description;
         this.image = image;
