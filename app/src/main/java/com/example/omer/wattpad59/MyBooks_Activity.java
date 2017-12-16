@@ -91,12 +91,8 @@ public class MyBooks_Activity extends AppCompatActivity {
         Log.d(TAG,"populateListView: Displaying data in the List View");
 
         //get the data and inset it to a list
-        Cursor data =mDatabaseHelper.getData();
-        ArrayList<BookInfo> listData=new ArrayList<>();
-        while(data.moveToNext()){
-            listData.add(data.getString(12));
+        List listData=mDatabaseHelper.getAllBooks();
 
-        }
         //create the list adapter and set the adapter
         ListAdapter adapter=new ArrayAdapter<BookInfo>(this,android.R.layout.simple_list_item_1,listData);
         mListView.setAdapter(adapter);
