@@ -94,7 +94,7 @@ public class MyBooks_Activity extends AppCompatActivity {
         Cursor data =mDatabaseHelper.getData();
         ArrayList<BookInfo> listData=new ArrayList<>();
         while(data.moveToNext()){
-            listData.add(data.getString(1));
+            listData.add(data.getString(12));
 
         }
         //create the list adapter and set the adapter
