@@ -12,6 +12,7 @@ import java.util.List;
 public class MyInfoManager {
 
     private static MyInfoManager instance;
+
     private DatabaseHelper databaseHelper;
 
     public static MyInfoManager getInstance(){

@@ -33,6 +33,10 @@ public class MyBooks_Activity extends AppCompatActivity {
 
     private ListView mListView;
 
+    private List<BookInfo> bookList;
+
+    ;
+
 
 
     @Override
@@ -42,9 +46,8 @@ public class MyBooks_Activity extends AppCompatActivity {
         setTitle(R.string.myBooks); //set toolbar title
 
         mListView =(ListView) findViewById(R.id.listView) ;
-        mDatabaseHelper=new DatabaseHelper(this);
 
-        populateListView();
+        bookList= MyInfoManager.getInstance().getAllBooks();
 
 
 
@@ -86,19 +89,5 @@ public class MyBooks_Activity extends AppCompatActivity {
         });
         //***************************BOTTOM NAVIGATION BAR*****************************************************
     }
-
-    private void populateListView() {
-        Log.d(TAG,"populateListView: Displaying data in the List View");
-
-        //get the data and inset it to a list
-        List listData=mDatabaseHelper.getAllBooks();
-
-        //create the list adapter and set the adapter
-        ListAdapter adapter=new ArrayAdapter<BookInfo>(this,android.R.layout.simple_list_item_1,listData);
-        mListView.setAdapter(adapter);
-
-
-    }
-
 
 }
