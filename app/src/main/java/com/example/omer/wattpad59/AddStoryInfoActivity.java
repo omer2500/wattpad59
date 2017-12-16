@@ -55,6 +55,8 @@ public class AddStoryInfoActivity extends FragmentActivity {
         textView = (TextView)findViewById(R.id.addCoverTextView) ;
         publishButton = findViewById(R.id.publishButton);
 
+        MyInfoManager.getInstance().openDatabase(this);
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,12 +113,14 @@ public class AddStoryInfoActivity extends FragmentActivity {
                 Bitmap image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
                 String content = storyContent.getText().toString();
                 if(storyTitle.length() !=0 && storyDescription.length() !=0 && storyContent.length() !=0){
-                    addData(title, description, image, content);
+                    toastMessage("hello");
+                    addData(title, description, null, content);
                     storyTitle.setText("");
                     storyDescription.setText("");
                     imageView.setImageURI(null);
                     storyContent.setText("");
                     toastMessage("Your story was successfully published!");
+
                 }else{
                     toastMessage("You must fill everything");
                 }
@@ -149,8 +153,8 @@ public class AddStoryInfoActivity extends FragmentActivity {
     }
 
     //create customizable toast
-    private void toastMessage(String message){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT);
+    public void toastMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }

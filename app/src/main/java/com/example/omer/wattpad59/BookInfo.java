@@ -26,6 +26,13 @@ public class BookInfo {
         this.content = content;
     }
 
+    public BookInfo(String name, String description, String content) {
+        this.id = generateID();
+        this.name = name;
+        this.description = description;
+        this.content = content;
+    }
+
     private String generateID(){
         return "book_" + System.currentTimeMillis();
     }

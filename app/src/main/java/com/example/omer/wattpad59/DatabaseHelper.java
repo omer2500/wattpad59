@@ -18,8 +18,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     private static final String TAG = "DatabaseHelper";
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "MyDB";
-    private SQLiteDatabase db;
+    private static final String DATABASE_NAME = "myDatabase";
+    private SQLiteDatabase db1;
 
     // Books table
     private static final String BOOKS_TABLE_NAME = "books";
@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String BOOKS_COLUMN_4__IMAGE = "image";
     private static final String BOOKS_COLUMN_5__CONTENT = "content";
 
-    private static final String[] BOOKS_COLUMNS = {BOOKS_COLUMN_1_ID, BOOKS_COLUMN_1_ID, BOOKS_COLUMN_2_NAME,
+    private static final String[] BOOKS_COLUMNS = {BOOKS_COLUMN_1_ID, BOOKS_COLUMN_2_NAME,
             BOOKS_COLUMN_3_DESCRIPTION, BOOKS_COLUMN_4__IMAGE, BOOKS_COLUMN_5__CONTENT};
 
 
@@ -42,12 +42,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         try{
             // SQL statement to create item table
             String CREATE_BOOKS_TABLE = "create table if not exists " + BOOKS_TABLE_NAME + "("
-                    + BOOKS_COLUMN_1_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    + BOOKS_COLUMN_1_ID + " TEXT PRIMARY KEY AUTOINCREMENT, "
                     + BOOKS_COLUMN_2_NAME + " TEXT, "
                     + BOOKS_COLUMN_3_DESCRIPTION + " TEXT, "
                     + BOOKS_COLUMN_4__IMAGE + " BLOB, "
-                    + BOOKS_COLUMN_5__CONTENT + " CONTENT)";
+                    + BOOKS_COLUMN_5__CONTENT + " TEXT)";
             db.execSQL(CREATE_BOOKS_TABLE);
+            Log.d(TAG,"created books table");
 
         }catch(Throwable throwable){
             throwable.printStackTrace();
@@ -56,13 +57,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     //open database
     public  void open(){
-        db = getWritableDatabase();
+        db1 = getWritableDatabase();
     }
 
     //close database if open
     public void close(){
-        if(db!=null){
-            db.close();
+        if(db1 !=null){
+            db1.close();
         }
     }
 
@@ -80,7 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(BOOKS_COLUMN_4__IMAGE, book.getImageAsByteArray());
         values.put(BOOKS_COLUMN_5__CONTENT, book.getContent());
 
-        result = db.insert(BOOKS_TABLE_NAME,null,values);
+        result = db1.insert(BOOKS_TABLE_NAME,null,values);
         if(result > 0){
             return true;
         }
@@ -93,7 +94,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         // BOOKS_COLUMN_3_DESCRIPTION, BOOKS_COLUMN_4__IMAGE, BOOKS_COLUMN_5__CONTENT
         Cursor cursor = null;
         try{
-            cursor = db.query(BOOKS_TABLE_NAME, BOOKS_COLUMNS, null, null, null, null, null);
+            cursor = db1.query(BOOKS_TABLE_NAME, BOOKS_COLUMNS, null, null, null, null, null);
             if(cursor!=null && cursor.getCount()>0){
                 cursor.moveToFirst();
                 while(!cursor.isAfterLast()){
@@ -117,16 +118,5 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
         return result;
     }
-
-    public Cursor getData(){
-        SQLiteDatabase db=this.getWritableDatabase();
-        String query= "SELECT * FROM"+BOOKS_TABLE_NAME;
-        Cursor data= db.rawQuery(query,null);
-        return data;
-    }
-
-
-
-
 
 }
