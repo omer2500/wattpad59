@@ -1,18 +1,25 @@
 package com.example.omer.wattpad59;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by omer on 01/12/2017.
@@ -20,25 +27,26 @@ import android.widget.TextView;
 
 public class MyBooks_Activity extends AppCompatActivity {
 
-    int [] images={R.drawable.actionbook1,R.drawable.actionbook2,R.drawable.actionbook3,R.drawable.actionbook4,R.drawable.actionbook5};
+    private static final String TAG="myBooksActivity";
 
-    String [] names={"BREAKER","The Eye Of Minds","Loose Ends", "Hunger Games","In The Blood"};
+    DatabaseHelper mDatabaseHelper;
 
-    String[] description={"this is book 1","this is book 2","this is book 3","this is book 4","this is book 5"};
+    private ListView mListView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mybooks_activity);
-
         setTitle(R.string.myBooks); //set toolbar title
 
-        //connecting the view to the ativity
-        ListView listView = (ListView) findViewById(R.id.listView);
+        mListView =(ListView) findViewById(R.id.listView) ;
+        mDatabaseHelper=new DatabaseHelper(this);
 
-        CustomAdapter customAdapter = new CustomAdapter();
+        populateListView();
 
-        listView.setAdapter(customAdapter);
+
 
 
         //***************************BOTTOM NAVIGATION BAR*****************************************************
@@ -78,40 +86,23 @@ public class MyBooks_Activity extends AppCompatActivity {
         });
         //***************************BOTTOM NAVIGATION BAR*****************************************************
     }
-        class CustomAdapter extends BaseAdapter {
 
-            //return the size of the list
-            @Override
-            public int getCount() {
-                return images.length;
-            }
+    private void populateListView() {
+        Log.d(TAG,"populateListView: Displaying data in the List View");
 
-            @Override
-            public Object getItem(int i) {
-                return null;
-            }
+        //get the data and inset it to a list
+        Cursor data =mDatabaseHelper.getData();
+        ArrayList<BookInfo> listData=new ArrayList<>();
+        while(data.moveToNext()){
+            listData.add(data.getString(1));
 
-            @Override
-            public long getItemId(int i) {
-                return 0;
-            }
-
-            @Override
-            public View getView(int i, View view, ViewGroup viewGroup) {
-                view=getLayoutInflater().inflate(R.layout.custom_listview,null);
-
-                //assign the views for a variable to set things up
-                ImageView imageView=(ImageView)view.findViewById(R.id.imageView);
-                TextView bookName=(TextView)view.findViewById(R.id.bookName);
-                TextView bookDesc=(TextView)view.findViewById(R.id.bookDescription);
-
-                //setting the text and image of the custom view
-                imageView.setImageResource(images[i]);
-                bookName.setText(names[i]);
-                bookDesc.setText(description[i]);
-
-                return view;
-            }
         }
+        //create the list adapter and set the adapter
+        ListAdapter adapter=new ArrayAdapter<BookInfo>(this,android.R.layout.simple_list_item_1,listData);
+        mListView.setAdapter(adapter);
+
 
     }
+
+
+}

@@ -118,6 +118,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return result;
     }
 
+    public Cursor getData(){
+        SQLiteDatabase db=this.getWritableDatabase();
+        String query= "SELECT * FROM"+BOOKS_TABLE_NAME;
+        Cursor data= db.rawQuery(query,null);
+        return data;
+    }
+
+
+
 
 
 }
