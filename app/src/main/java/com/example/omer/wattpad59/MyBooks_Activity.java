@@ -28,16 +28,9 @@ import java.util.List;
 public class MyBooks_Activity extends AppCompatActivity {
 
     private static final String TAG="myBooksActivity";
-
     DatabaseHelper mDatabaseHelper;
-
     private ListView mListView;
-
     private List<BookInfo> bookList;
-
-    ;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +38,13 @@ public class MyBooks_Activity extends AppCompatActivity {
         setContentView(R.layout.mybooks_activity);
         setTitle(R.string.myBooks); //set toolbar title
 
-        mListView =(ListView) findViewById(R.id.listView) ;
+        mListView =(ListView) findViewById(R.id.listView1) ;
 
         bookList= MyInfoManager.getInstance().getAllBooks();
 
-
+        //create the list adapter and set the adapter
+        customAdapter adapter = new customAdapter(this, bookList);
+        mListView.setAdapter(adapter);
 
 
         //***************************BOTTOM NAVIGATION BAR*****************************************************

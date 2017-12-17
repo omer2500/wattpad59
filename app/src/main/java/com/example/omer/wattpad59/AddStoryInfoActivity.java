@@ -110,7 +110,10 @@ public class AddStoryInfoActivity extends FragmentActivity {
             public void onClick(View view) {
                 String title = storyTitle.getText().toString();
                 String description = storyDescription.getText().toString();
-                Bitmap image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+               //Bitmap image = null;
+                //if(imageView != null){
+                    //image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                //}
                 String content = storyContent.getText().toString();
                 if(storyTitle.length() !=0 && storyDescription.length() !=0 && storyContent.length() !=0){
                     addData(title, description, null, content);
