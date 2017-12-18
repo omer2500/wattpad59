@@ -45,4 +45,8 @@ public class MyInfoManager {
     public List<BookInfo> getAllBooks(){
         return databaseHelper.getAllBooks();
     }
+
+    public boolean deleteBook(String id){
+        return databaseHelper.delete(id);
+    }
 }

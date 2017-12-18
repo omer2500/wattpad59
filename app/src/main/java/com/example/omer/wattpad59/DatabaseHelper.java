@@ -115,4 +115,17 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
+    public boolean delete(String id){
+        long result = -1;
+        //String deleteQuery = "DELETE FROM " + BOOKS_TABLE_NAME + " WHERE " + BOOKS_COLUMN_1_ID +
+                //" = '" + id + "'";
+        //db.execSQL(deleteQuery);
+        result = db.delete(BOOKS_TABLE_NAME, BOOKS_COLUMN_1_ID + " = ?", new String[] {id});
+        Log.d(TAG,"deleted");
+        if(result > 0){
+            return true;
+        }
+        return false;
+    }
+
 }

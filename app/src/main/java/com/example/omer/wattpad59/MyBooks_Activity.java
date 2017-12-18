@@ -1,5 +1,6 @@
 package com.example.omer.wattpad59;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -11,8 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -31,6 +34,10 @@ public class MyBooks_Activity extends AppCompatActivity {
     DatabaseHelper mDatabaseHelper;
     private ListView mListView;
     private List<BookInfo> bookList;
+    ImageButton deleteBtn;
+    TextView bookId;
+    customAdapter2 adapter;
+    Context context=this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +46,28 @@ public class MyBooks_Activity extends AppCompatActivity {
         setTitle(R.string.myBooks); //set toolbar title
 
         mListView =(ListView) findViewById(R.id.listView1) ;
+        deleteBtn = findViewById(R.id.delete_btn);
+        bookId = findViewById(R.id.bookName);
 
         bookList= MyInfoManager.getInstance().getAllBooks();
 
         //create the list adapter and set the adapter
-        customAdapter adapter = new customAdapter(this, bookList);
+        adapter = new customAdapter2(this, bookList);
         mListView.setAdapter(adapter);
+
+        //delete book
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                BookInfo book = bookList.get(i);
+                String id = book.getId().toString();
+                delete(id);
+                adapter.notifyDataSetChanged();
+                adapter = new customAdapter2(context, bookList);
+                mListView.setAdapter(adapter);
+                return true;
+            }
+        });
 
 
         //***************************BOTTOM NAVIGATION BAR*****************************************************
@@ -83,6 +106,10 @@ public class MyBooks_Activity extends AppCompatActivity {
             }
         });
         //***************************BOTTOM NAVIGATION BAR*****************************************************
+    }
+
+    public void delete(String id){
+        MyInfoManager.getInstance().deleteBook(id);
     }
 
 }

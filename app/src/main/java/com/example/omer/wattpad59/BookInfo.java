@@ -82,7 +82,7 @@ public class BookInfo {
     }
 
     //convert image from bitmap to byte array
-    public byte[] getImageAsByteArray(Bitmap image){
+    public byte[] getImageAsByteArray(){
         byte[] res = new byte[0];
         if(image!=null){
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

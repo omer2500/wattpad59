@@ -50,7 +50,7 @@ public class customAdapter2 extends BaseAdapter {
         //Set text for the view
         bookName.setText(bookList.get(position).getName());
         bookDescription.setText(String.valueOf(bookList.get(position).getDescription()));
-        bookImage.setImageResource(bookList.get(position).getImage()));
+        bookImage.setImageBitmap(bookList.get(position).getImage());
 
 
         return v;
