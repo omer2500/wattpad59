@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-If you want to edit our code and use it,download one of the text editors that support android apps
+If you want to edit the code and use it, download one of the text editors that support android apps
 (like androidStudio)
 
 Finish version will be avilalble when we finish the app.
