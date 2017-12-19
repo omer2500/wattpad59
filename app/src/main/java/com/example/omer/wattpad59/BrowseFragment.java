@@ -44,33 +44,45 @@ public class BrowseFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                //initialize the intent
+                Intent myIntent;
+
+                //according to user choice the activity will open and show him the
+                //book of the category that he choose
                 if(position==0){
-                    Intent myintent=new Intent(getActivity(),ActionBooksActivity.class);
-                    startActivityForResult(myintent,0);
+                    myIntent=new Intent(getActivity(),BooksActivity.class);
+                    myIntent.putExtra("str","action");
+                    startActivityForResult(myIntent,0);
                 }
                 if(position==1){
-                    Intent myintent=new Intent(getActivity(),FantacyBooksActivity.class);
-                    startActivityForResult(myintent,0);
+                    myIntent=new Intent(getActivity(),BooksActivity.class);
+                    myIntent.putExtra("str","fantacy");
+                    startActivityForResult(myIntent,0);
                 }
                 if(position==2){
-                    Intent myintent=new Intent(getActivity(),HorrorBooksActivity.class);
-                    startActivityForResult(myintent,0);
+                    myIntent=new Intent(getActivity(),BooksActivity.class);
+                    myIntent.putExtra("str","horror");
+                    startActivityForResult(myIntent,0);
                 }
                 if(position==3){
-                    Intent myintent=new Intent(getActivity(),ComedyBooksActivity.class);
-                    startActivityForResult(myintent,0);
+                    myIntent=new Intent(getActivity(),BooksActivity.class);
+                    myIntent.putExtra("str","comedy");
+                    startActivityForResult(myIntent,0);
                 }
                 if(position==4){
-                    Intent myintent=new Intent(getActivity(),KidsBooksActivity.class);
-                    startActivityForResult(myintent,0);
+                    myIntent=new Intent(getActivity(),BooksActivity.class);
+                    myIntent.putExtra("str","kids");
+                    startActivityForResult(myIntent,0);
                 }
                 if(position==5){
-                    Intent myintent=new Intent(getActivity(),RomanceBooksActivity.class);
-                    startActivityForResult(myintent,0);
+                    myIntent=new Intent(getActivity(),BooksActivity.class);
+                    myIntent.putExtra("str","romance");
+                    startActivityForResult(myIntent,0);
                 }
                 if(position==6){
-                    Intent myintent=new Intent(getActivity(),WarBooksActivity.class);
-                    startActivityForResult(myintent,0);
+                    myIntent=new Intent(getActivity(),BooksActivity.class);
+                    myIntent.putExtra("str","war");
+                    startActivityForResult(myIntent,0);
                 }
             }
         });
