@@ -2,13 +2,25 @@ package com.example.omer.wattpad59;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
+
+import java.util.List;
 
 public class ReadBooksActivity extends AppCompatActivity {
+
+    TextView textView;
+    String content;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_books);
+
+        textView = findViewById(R.id.readBookTextView);
+        content = getIntent().getStringExtra("content");
+        textView.setText(content);
+
 
     }
 }
