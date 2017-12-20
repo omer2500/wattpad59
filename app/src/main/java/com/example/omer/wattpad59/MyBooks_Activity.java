@@ -122,25 +122,27 @@ public class MyBooks_Activity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
+
                 switch (item.getItemId()){
                     case R.id.ic_home:
-                        Intent intent = new Intent(MyBooks_Activity.this, MainActivity.class);
+                        intent = new Intent(MyBooks_Activity.this, MainActivity.class);
                         startActivity(intent);
                         break;
 
                     case R.id.ic_library:
-                        Intent intent1 = new Intent(MyBooks_Activity.this, LibraryActivity.class);
-                        startActivity(intent1);
+                        intent = new Intent(MyBooks_Activity.this, LibraryActivity.class);
+                        startActivity(intent);
                         break;
 
                     case R.id.ic_add_story_info:
-                        Intent intent2 = new Intent(MyBooks_Activity.this, AddStoryInfoActivity.class);
-                        startActivity(intent2);
+                        intent = new Intent(MyBooks_Activity.this, AddStoryInfoActivity.class);
+                        startActivity(intent);
                         break;
 
                     case R.id.ic_my_books:
-                        Intent intent3 = new Intent(MyBooks_Activity.this, MyBooks_Activity.class);
-                        startActivity(intent3);
+                        intent= new Intent(MyBooks_Activity.this, MyBooks_Activity.class);
+                        startActivity(intent);
                         break;
                 }
                 return false;

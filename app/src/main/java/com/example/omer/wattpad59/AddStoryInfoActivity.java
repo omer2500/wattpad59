@@ -78,25 +78,26 @@ public class AddStoryInfoActivity extends FragmentActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent;
                 switch (item.getItemId()){
                     case R.id.ic_home:
-                        Intent intent = new Intent(AddStoryInfoActivity.this, MainActivity.class);
+                        intent = new Intent(AddStoryInfoActivity.this, MainActivity.class);
                         startActivity(intent);
                         break;
 
                     case R.id.ic_library:
-                        Intent intent1 = new Intent(AddStoryInfoActivity.this, LibraryActivity.class);
-                        startActivity(intent1);
+                        intent = new Intent(AddStoryInfoActivity.this, LibraryActivity.class);
+                        startActivity(intent);
                         break;
 
                     case R.id.ic_add_story_info:
-                        Intent intent2 = new Intent(AddStoryInfoActivity.this, AddStoryInfoActivity.class);
-                        startActivity(intent2);
+                        intent = new Intent(AddStoryInfoActivity.this, AddStoryInfoActivity.class);
+                        startActivity(intent);
                         break;
 
                     case R.id.ic_my_books:
-                        Intent intent3 = new Intent(AddStoryInfoActivity.this, MyBooks_Activity.class);
-                        startActivity(intent3);
+                        intent = new Intent(AddStoryInfoActivity.this, MyBooks_Activity.class);
+                        startActivity(intent);
                         break;
                 }
                 return false;
@@ -119,6 +120,9 @@ public class AddStoryInfoActivity extends FragmentActivity {
                     imageView.setImageURI(null);
                     storyContent.setText("");
                     toastMessage("Your story was successfully published!");
+                    //the myBooks activity will open after adding the book
+                    Intent intent = new Intent(AddStoryInfoActivity.this, MyBooks_Activity.class);
+                    startActivity(intent);
 
                 }else{
                     toastMessage("You must fill everything");

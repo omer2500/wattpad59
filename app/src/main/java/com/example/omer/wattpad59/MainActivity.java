@@ -14,7 +14,6 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-        DatabaseHelper db;
 
         private static final String TAG="MainActivity";
 
@@ -49,25 +48,26 @@ public class MainActivity extends AppCompatActivity {
             bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Intent intent;
                     switch (item.getItemId()){
                         case R.id.ic_home:
-                            Intent intent = new Intent(MainActivity.this, LibraryActivity.class);
+                            intent = new Intent(MainActivity.this, LibraryActivity.class);
                             startActivity(intent);
                             break;
 
                         case R.id.ic_library:
-                            Intent intent1 = new Intent(MainActivity.this, LibraryActivity.class);
-                            startActivity(intent1);
+                            intent = new Intent(MainActivity.this, LibraryActivity.class);
+                            startActivity(intent);
                             break;
 
                         case R.id.ic_add_story_info:
-                            Intent intent2 = new Intent(MainActivity.this, AddStoryInfoActivity.class);
-                            startActivity(intent2);
+                            intent = new Intent(MainActivity.this, AddStoryInfoActivity.class);
+                            startActivity(intent);
                             break;
 
                         case R.id.ic_my_books:
-                            Intent intent3 = new Intent(MainActivity.this, MyBooks_Activity.class);
-                            startActivity(intent3);
+                             intent= new Intent(MainActivity.this, MyBooks_Activity.class);
+                            startActivity(intent);
                             break;
                     }
                     return false;
@@ -86,17 +86,17 @@ public class MainActivity extends AppCompatActivity {
             tabLayout.setupWithViewPager(mViewPager);
         }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        MyInfoManager.getInstance().openDatabase(this);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        MyInfoManager.getInstance().closeDatabase();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        MyInfoManager.getInstance().openDatabase(this);
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        MyInfoManager.getInstance().closeDatabase();
+//    }
 
 
 
