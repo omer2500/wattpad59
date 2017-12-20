@@ -55,4 +55,11 @@ public class customAdapter2 extends BaseAdapter {
 
         return v;
     }
+
+    //public void refreshEvents(List<BookInfo> list) {
+        //this.bookList.clear();
+        //this.bookList.addAll(list);
+        //notifyDataSetChanged();
+    //}
+
 }

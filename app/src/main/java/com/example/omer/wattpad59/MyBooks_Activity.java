@@ -1,6 +1,8 @@
 package com.example.omer.wattpad59;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -37,7 +39,7 @@ public class MyBooks_Activity extends AppCompatActivity {
     ImageButton deleteBtn;
     TextView bookId;
     customAdapter2 adapter;
-    Context context=this;
+    Integer position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,19 +57,58 @@ public class MyBooks_Activity extends AppCompatActivity {
         adapter = new customAdapter2(this, bookList);
         mListView.setAdapter(adapter);
 
-        //delete book
+        //delete a book with alertDialog when long-clicking on listView item
         mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                BookInfo book = bookList.get(i);
-                String id = book.getId().toString();
-                delete(id);
-                adapter.notifyDataSetChanged();
-                adapter = new customAdapter2(context, bookList);
-                mListView.setAdapter(adapter);
+                position = i;
+                AlertDialog.Builder alert = new AlertDialog.Builder(MyBooks_Activity.this);
+                alert.setMessage("Do You Want To Delete This Book?").setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                BookInfo book = bookList.get(position);
+                                String id = book.getId().toString();
+                                delete(id);
+                                bookList= MyInfoManager.getInstance().getAllBooks();
+                                adapter = new customAdapter2(MyBooks_Activity.this, bookList);
+                                mListView.setAdapter(adapter);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                alert.show();
                 return true;
             }
         });
+
+        //read book content
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(MyBooks_Activity.this, ReadBooksActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        //delete book
+        //mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            //@Override
+            //public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //BookInfo book = bookList.get(i);
+                //String id = book.getId().toString();
+                //delete(id);
+                //adapter.notifyDataSetChanged();
+                //adapter = new customAdapter2(context, bookList);
+                //mListView.setAdapter(adapter);
+                //return true;
+            //}
+        //});
 
 
         //***************************BOTTOM NAVIGATION BAR*****************************************************
