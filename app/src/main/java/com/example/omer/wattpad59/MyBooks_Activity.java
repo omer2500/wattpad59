@@ -40,6 +40,7 @@ public class MyBooks_Activity extends AppCompatActivity {
     TextView bookId;
     customAdapter2 adapter;
     Integer position;
+    String content;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +92,8 @@ public class MyBooks_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MyBooks_Activity.this, ReadBooksActivity.class);
+                content = bookList.get(i).getContent().toString();
+                intent.putExtra("content", content);
                 startActivity(intent);
             }
         });
