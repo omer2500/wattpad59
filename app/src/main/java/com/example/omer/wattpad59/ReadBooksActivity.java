@@ -10,6 +10,7 @@ public class ReadBooksActivity extends AppCompatActivity {
 
     TextView textView;
     String content;
+    String name;
 
 
     @Override
@@ -19,7 +20,9 @@ public class ReadBooksActivity extends AppCompatActivity {
 
         textView = findViewById(R.id.readBookTextView);
         content = getIntent().getStringExtra("content");
+        name = getIntent().getStringExtra("name");
         textView.setText(content);
+        setTitle(name);
 
 
     }
