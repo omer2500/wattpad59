@@ -10,7 +10,6 @@ public class bookTemplate {
     private String bookDescription;
 
     //Constructor
-
     public bookTemplate(int image, String bookName,String bookDescription) {
         this.image = image;
         this.bookName = bookName;

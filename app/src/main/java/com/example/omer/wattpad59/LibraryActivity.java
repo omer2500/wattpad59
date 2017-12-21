@@ -15,8 +15,6 @@ import java.util.List;
 
 public class LibraryActivity extends AppCompatActivity {
 
-    private List<BookInfo> booksList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

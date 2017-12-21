@@ -18,6 +18,7 @@ public class BookInfo {
     Bitmap image;
     String content;
 
+    //Constructor
     public BookInfo(String name, String description, Bitmap image, String content) {
         this.id = generateID();
         this.name = name;
@@ -26,12 +27,7 @@ public class BookInfo {
         this.content = content;
     }
 
-    public BookInfo(String name, String description, String content) {
-        this.id = generateID();
-        this.name = name;
-        this.description = description;
-        this.content = content;
-    }
+    //Getters and Setters
 
     private String generateID(){
         return "book_" + System.currentTimeMillis();
@@ -92,6 +88,7 @@ public class BookInfo {
         return res;
     }
 
+    //convert image from byte array to bitmap
     public void setImageFromByteArray(byte[] imageFromByteArray) {
         if(imageFromByteArray!=null){
             image = BitmapFactory.decodeByteArray(imageFromByteArray, 0, imageFromByteArray.length);

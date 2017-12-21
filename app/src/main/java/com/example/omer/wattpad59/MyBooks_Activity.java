@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,11 +33,8 @@ import java.util.List;
 
 public class MyBooks_Activity extends AppCompatActivity {
 
-    private static final String TAG="myBooksActivity";
-    DatabaseHelper mDatabaseHelper;
     private ListView mListView;
     private List<BookInfo> bookList;
-    ImageButton deleteBtn;
     TextView bookId;
     customAdapter2 adapter;
     Integer position;
@@ -48,9 +46,9 @@ public class MyBooks_Activity extends AppCompatActivity {
         setTitle(R.string.myBooks); //set toolbar title
 
         mListView =(ListView) findViewById(R.id.listView1) ;
-        deleteBtn = findViewById(R.id.delete_btn);
         bookId = findViewById(R.id.bookName);
 
+        //Get all the books
         bookList= MyInfoManager.getInstance().getAllBooks();
 
         //create the list adapter and set the adapter
@@ -63,19 +61,22 @@ public class MyBooks_Activity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 position = i;
                 AlertDialog.Builder alert = new AlertDialog.Builder(MyBooks_Activity.this);
-                alert.setMessage("Do You Want To Delete This Book?").setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                alert.setMessage(R.string.alertDialogMessage).setCancelable(false)
+                        .setPositiveButton(R.string.positiveButtonAlertDialog, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 BookInfo book = bookList.get(position);
                                 String id = book.getId().toString();
+                                String name = book.getName().toString();
                                 delete(id);
+                                //Update the adapter to show list after item was deleted
                                 bookList= MyInfoManager.getInstance().getAllBooks();
                                 adapter = new customAdapter2(MyBooks_Activity.this, bookList);
                                 mListView.setAdapter(adapter);
+                               toastMessage(name + " Book Deleted"); //toast delete message (Not working with R.strings!)
                             }
                         })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.negativeButtonAlertDialog, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.cancel();
@@ -86,7 +87,7 @@ public class MyBooks_Activity extends AppCompatActivity {
             }
         });
 
-        //read book content
+        //Set reading the book content when clicking on item
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -98,21 +99,6 @@ public class MyBooks_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-        //delete book
-        //mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            //@Override
-            //public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //BookInfo book = bookList.get(i);
-                //String id = book.getId().toString();
-                //delete(id);
-                //adapter.notifyDataSetChanged();
-                //adapter = new customAdapter2(context, bookList);
-                //mListView.setAdapter(adapter);
-                //return true;
-            //}
-        //});
 
 
         //***************************BOTTOM NAVIGATION BAR*****************************************************
@@ -152,11 +138,17 @@ public class MyBooks_Activity extends AppCompatActivity {
                 return false;
             }
         });
-        //***************************BOTTOM NAVIGATION BAR*****************************************************
+        //***************************END OF BOTTOM NAVIGATION BAR***********************************************
     }
 
+    //Delete a book by calling to the deletion function in MyInfoManager and sending the book ID
     public void delete(String id){
         MyInfoManager.getInstance().deleteBook(id);
+    }
+
+    //create customizable toast
+    public void toastMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }

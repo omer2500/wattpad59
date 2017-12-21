@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Wattpad</string>
     <string name="tab_text_1">Browse</string>
-    <string name="tab_text_2">Recommanded</string>
+    <string name="tab_text_2">Recommended</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_main2">Main2Activity</string>
@@ -23,4 +23,7 @@
     <string name="kids">Kids</string>
     <string name="romance">Romance</string>
     <string name="war">War</string>
+    <string name="alertDialogMessage">Do You Want To Delete This Book?</string>
+    <string name="positiveButtonAlertDialog">Yes</string>
+    <string name="negativeButtonAlertDialog">No</string>
 </resources>

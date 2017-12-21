@@ -19,7 +19,6 @@ public class customAdapter extends BaseAdapter {
     private List<bookTemplate> bookList;
 
     //Constructor
-
     public customAdapter(Context mContext, List<bookTemplate> bookList) {
         this.mContext = mContext;
         this.bookList = bookList;
@@ -51,7 +50,6 @@ public class customAdapter extends BaseAdapter {
         bookName.setText(bookList.get(position).getBookName());
         bookDescription.setText(String.valueOf(bookList.get(position).getBookDescription()));
         bookImage.setImageResource(bookList.get(position).getImage());
-
 
         return v;
     }

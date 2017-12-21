@@ -16,8 +16,6 @@ import android.widget.ListView;
  */
 
 public class BrowseFragment extends Fragment {
-    private static final String TAG ="Browse_fragment1";
-
 
     @Nullable
     @Override
@@ -27,7 +25,7 @@ public class BrowseFragment extends Fragment {
         // book categories array
         String [] BookCategories={"Action","Fantasy","Horror","comedy","kids","Romance","war"};
 
-        //attach the listview to the view on xml
+        //attach the listView to the view on xml
         ListView listView = (ListView) view.findViewById(R.id.CategoriesMenu);
 
         //making array strings show in listView
@@ -40,6 +38,7 @@ public class BrowseFragment extends Fragment {
         //setting the adapter
         listView.setAdapter(ListViewAdapter);
 
+        //Show list according to chosen category when clicking on the category item
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -56,7 +55,7 @@ public class BrowseFragment extends Fragment {
                 }
                 if(position==1){
                     myIntent=new Intent(getActivity(),BooksActivity.class);
-                    myIntent.putExtra("str","fantacy");
+                    myIntent.putExtra("str","fantasy");
                     startActivityForResult(myIntent,0);
                 }
                 if(position==2){
@@ -86,7 +85,6 @@ public class BrowseFragment extends Fragment {
                 }
             }
         });
-
         return view;
     }
 }

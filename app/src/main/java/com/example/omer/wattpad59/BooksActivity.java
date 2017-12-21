@@ -15,9 +15,6 @@ import java.util.List;
  */
 
 public class BooksActivity extends AppCompatActivity {
-    private static final String TAG ="BooksActivity";
-
-
 
     private ListView bookListView;
     private customAdapter adapter;
@@ -43,9 +40,10 @@ public class BooksActivity extends AppCompatActivity {
         bookListView.setAdapter(adapter);
     }
 
+    //Set the list according to the category
     public void setContent(String data) {
         switch (data) {
-            case "action": //error
+            case "action":
                 bookList.add(new bookTemplate(R.drawable.actionbook1, "Breaker", "this is book1"));
                 bookList.add(new bookTemplate(R.drawable.actionbook2, "The Eye Of Minds", "this is book2"));
                 bookList.add(new bookTemplate(R.drawable.actionbook3, "Loose Ends", "this is book3"));
@@ -54,13 +52,13 @@ public class BooksActivity extends AppCompatActivity {
                 Log.d("TAG","inserted action books to array");
                 break;
 
-            case "fantacy":
+            case "fantasy":
                 bookList.add(new bookTemplate(R.drawable.fantacybook1,"The Hundred Thousand Kindoms","this is book1"));
                 bookList.add(new bookTemplate(R.drawable.fantacybook2,"The Stone In The Skull","this is book2"));
                 bookList.add(new bookTemplate(R.drawable.fantacybook3,"Harry Potter","this is book3"));
                 bookList.add(new bookTemplate(R.drawable.fantacybook4,"Dragon Rider","this is book4"));
                 bookList.add(new bookTemplate(R.drawable.fantacybook5,"The White Dragon","this is book5"));
-                Log.d("TAG","inserted fantacy books to array");
+                Log.d("TAG","inserted fantasy books to array");
                 break;
 
             case "horror":

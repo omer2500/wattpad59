@@ -12,7 +12,6 @@ import android.view.ViewGroup;
  */
 
 public class RecommendedFragment extends Fragment {
-    private static final String TAG ="Recommanded_fragment";
 
     @Nullable
     @Override

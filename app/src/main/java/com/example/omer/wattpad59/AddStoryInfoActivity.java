@@ -31,18 +31,12 @@ import java.util.List;
 
 public class AddStoryInfoActivity extends FragmentActivity {
 
-    DatabaseHelper databaseHelper;
     private EditText storyTitle, storyDescription, storyContent;
     private Button publishButton;
     private ImageView imageView;
     TextView textView;
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
-    FragmentManager fmanager;
-    private List<BookInfo> booksList;
-    private ListView postsListView;
-    private Context context;
-    customAdapter adapter;
 
 
     @Override
@@ -58,6 +52,7 @@ public class AddStoryInfoActivity extends FragmentActivity {
 
         MyInfoManager.getInstance().openDatabase(this);
 
+        //Open gallery when clicking on "Add cover"
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,24 +107,28 @@ public class AddStoryInfoActivity extends FragmentActivity {
             public void onClick(View view) {
                 String title = storyTitle.getText().toString();
                 String description = storyDescription.getText().toString();
-                Bitmap image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                Bitmap image;
+                if(imageView.getDrawable() != null){
+                    image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                }else{
+                    image = null;
+                }
                 String content = storyContent.getText().toString();
-                if(storyTitle.length() !=0 && storyDescription.length() !=0 && storyContent.length() !=0){
+                if(storyTitle.length() !=0 && storyDescription.length() !=0 && storyContent.length() !=0 && image !=null){
                     addData(title, description, image, content);
+                    //Reset all input fields
                     storyTitle.setText("");
                     storyDescription.setText("");
                     imageView.setImageURI(null);
                     storyContent.setText("");
-                    toastMessage("Your story was successfully published!");
+                    toastMessage("Your story was successfully published!"); //toast delete message (Not working with R.strings!)
                     //the myBooks activity will open after adding the book
                     Intent intent = new Intent(AddStoryInfoActivity.this, MyBooks_Activity.class);
                     startActivity(intent);
 
                 }else{
-                    toastMessage("You must fill everything");
+                    toastMessage("You must fill everything"); //toast delete message (Not working with R.strings!)
                 }
-
-                //booksList = MyInfoManager.getInstance().getAllBooks();
             }
         });
     }

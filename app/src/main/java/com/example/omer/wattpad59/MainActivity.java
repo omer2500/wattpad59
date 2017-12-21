@@ -14,12 +14,9 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-
-        private static final String TAG="MainActivity";
-
-        private SectionsPageAdapter mSectionsPageAdapter;
-
-        private ViewPager mViewPager;
+    private static final String TAG="MainActivity";
+    private SectionsPageAdapter mSectionsPageAdapter;
+    private ViewPager mViewPager;
 
 
     @Override
@@ -31,10 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         setTitle(R.string.home); //set toolbar title
 
-            Log.d(TAG,"onCreate: String.");
-
-
-
+        Log.d(TAG,"onCreate: String.");
 
 
 //***************************BOTTOM NAVIGATION BAR*****************************************************
@@ -76,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 //*********************************FRAGMENT*******************************************************
-            mSectionsPageAdapter=new SectionsPageAdapter(getSupportFragmentManager());
+            mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
             //Setup up the ViewPager with the sections adapter.
             mViewPager=(ViewPager)findViewById(R.id.container);
@@ -86,24 +80,11 @@ public class MainActivity extends AppCompatActivity {
             tabLayout.setupWithViewPager(mViewPager);
         }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        MyInfoManager.getInstance().openDatabase(this);
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        MyInfoManager.getInstance().closeDatabase();
-//    }
-
-
-
+    //Show the "Browse" and "Recommended" fragments
     private void setupViewPager(ViewPager viewPager){
         SectionsPageAdapter adapter=new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new BrowseFragment(),"Browse");
-        adapter.addFragment(new RecommendedFragment(),"Recommanded");
+        adapter.addFragment(new RecommendedFragment(),"Recommended");
         viewPager.setAdapter(adapter);
 
     }

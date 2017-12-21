@@ -19,7 +19,6 @@ public class customAdapter2 extends BaseAdapter {
     private List<BookInfo> bookList;
 
     //Constructor
-
     public customAdapter2(Context mContext, List<BookInfo> bookList) {
         this.mContext = mContext;
         this.bookList = bookList;
@@ -52,14 +51,6 @@ public class customAdapter2 extends BaseAdapter {
         bookDescription.setText(String.valueOf(bookList.get(position).getDescription()));
         bookImage.setImageBitmap(bookList.get(position).getImage());
 
-
         return v;
     }
-
-    //public void refreshEvents(List<BookInfo> list) {
-        //this.bookList.clear();
-        //this.bookList.addAll(list);
-        //notifyDataSetChanged();
-    //}
-
 }

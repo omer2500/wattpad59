@@ -19,9 +19,9 @@ public class ReadBooksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read_books);
 
         textView = findViewById(R.id.readBookTextView);
-        content = getIntent().getStringExtra("content");
-        name = getIntent().getStringExtra("name");
-        textView.setText(content);
+        content = getIntent().getStringExtra("content");  //Get the book content that was transferred
+        name = getIntent().getStringExtra("name");  //Get the book name that was transferred
+        textView.setText(content); //Show the book content
         setTitle(name);
 
 

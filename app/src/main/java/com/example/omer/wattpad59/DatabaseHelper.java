@@ -29,6 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String BOOKS_COLUMN_4__IMAGE = "image";
     private static final String BOOKS_COLUMN_5__CONTENT = "content";
 
+    //Book columns order
     private static final String[] BOOKS_COLUMNS = {BOOKS_COLUMN_1_ID, BOOKS_COLUMN_2_NAME,
             BOOKS_COLUMN_3_DESCRIPTION, BOOKS_COLUMN_4__IMAGE, BOOKS_COLUMN_5__CONTENT};
 
@@ -63,7 +64,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
-
+    //Add new book the DB
     public boolean addNewBookInfo(BookInfo book){
         long result = -1;
         ContentValues values = new ContentValues();
@@ -80,6 +81,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return false;
     }
 
+    //Get all the books in the DB as a list
     public List<BookInfo> getAllBooks(){
         List<BookInfo> result = new ArrayList<BookInfo>();
         //BOOKS_COLUMN_1_ID, BOOKS_COLUMN_2_NAME,
@@ -115,17 +117,14 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
+    //Delete book by given ID
     public boolean delete(String id){
         long result = -1;
-        //String deleteQuery = "DELETE FROM " + BOOKS_TABLE_NAME + " WHERE " + BOOKS_COLUMN_1_ID +
-                //" = '" + id + "'";
-        //db.execSQL(deleteQuery);
         result = db.delete(BOOKS_TABLE_NAME, BOOKS_COLUMN_1_ID + " = ?", new String[] {id});
-        Log.d(TAG,"deleted");
+        Log.d(TAG,"Book deleted");
         if(result > 0){
             return true;
         }
         return false;
     }
-
 }
