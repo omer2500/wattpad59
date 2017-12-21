@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent;
                     switch (item.getItemId()){
                         case R.id.ic_home:
-                            intent = new Intent(MainActivity.this, LibraryActivity.class);
-                            startActivity(intent);
                             break;
 
                         case R.id.ic_library:

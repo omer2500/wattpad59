@@ -42,8 +42,6 @@ public class LibraryActivity extends AppCompatActivity {
                         break;
 
                     case R.id.ic_library:
-                        intent = new Intent(LibraryActivity.this, LibraryActivity.class);
-                        startActivity(intent);
                         break;
 
                     case R.id.ic_add_story_info:

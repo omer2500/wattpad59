@@ -131,8 +131,6 @@ public class MyBooks_Activity extends AppCompatActivity {
                         break;
 
                     case R.id.ic_my_books:
-                        intent= new Intent(MyBooks_Activity.this, MyBooks_Activity.class);
-                        startActivity(intent);
                         break;
                 }
                 return false;

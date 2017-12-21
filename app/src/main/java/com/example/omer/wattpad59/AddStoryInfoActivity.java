@@ -87,8 +87,6 @@ public class AddStoryInfoActivity extends FragmentActivity {
                         break;
 
                     case R.id.ic_add_story_info:
-                        intent = new Intent(AddStoryInfoActivity.this, AddStoryInfoActivity.class);
-                        startActivity(intent);
                         break;
 
                     case R.id.ic_my_books:
