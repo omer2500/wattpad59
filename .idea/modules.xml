@@ -3,10 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend/backend.iml" filepath="$PROJECT_DIR$/backend/backend.iml" />
       <module fileurl="file://$PROJECT_DIR$/wattpad59.iml" filepath="$PROJECT_DIR$/wattpad59.iml" />
-      <module fileurl="file://D:\users\omer\AndroidStudioProjects\wattpad60\wattpad59.iml" filepath="D:\users\omer\AndroidStudioProjects\wattpad60\wattpad59.iml" />
-      <module fileurl="file://D:\Users\Yarden-PC\AndroidStudioProjects\wattpad59\wattpad60.iml" filepath="D:\Users\Yarden-PC\AndroidStudioProjects\wattpad59\wattpad60.iml" />
-      <module fileurl="file://D:\Users\Yarden-PC\AndroidStudioProjects\wattpad59\.idea\wattpad60.iml" filepath="D:\Users\Yarden-PC\AndroidStudioProjects\wattpad59\.idea\wattpad60.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../omer/AndroidStudioProjects/wattpad60/wattpad59.iml" filepath="$PROJECT_DIR$/../../../omer/AndroidStudioProjects/wattpad60/wattpad59.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wattpad60.iml" filepath="$PROJECT_DIR$/wattpad60.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/wattpad60.iml" filepath="$PROJECT_DIR$/.idea/wattpad60.iml" />
     </modules>
   </component>
 </project>

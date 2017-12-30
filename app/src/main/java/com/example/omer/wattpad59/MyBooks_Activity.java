@@ -46,7 +46,7 @@ public class MyBooks_Activity extends AppCompatActivity {
         setTitle(R.string.myBooks); //set toolbar title
 
         mListView =(ListView) findViewById(R.id.listView1) ;
-        bookId = findViewById(R.id.bookName);
+        bookId = (TextView) findViewById(R.id.bookName);
 
         //Get all the books
         bookList= MyInfoManager.getInstance().getAllBooks();

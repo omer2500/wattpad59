@@ -43,12 +43,12 @@ public class AddStoryInfoActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_story_info);
-        storyTitle = findViewById(R.id.storyTitle);
-        storyDescription = findViewById(R.id.storyDescription);
-        storyContent = findViewById(R.id.storyContent);
+        storyTitle = (EditText) findViewById(R.id.storyTitle);
+        storyDescription = (EditText) findViewById(R.id.storyDescription);
+        storyContent = (EditText) findViewById(R.id.storyContent);
         imageView = (ImageView)findViewById(R.id.addCoverImageView) ;
         textView = (TextView)findViewById(R.id.addCoverTextView) ;
-        publishButton = findViewById(R.id.publishButton);
+        publishButton = (Button) findViewById(R.id.publishButton);
 
         MyInfoManager.getInstance().openDatabase(this);
 
@@ -149,7 +149,7 @@ public class AddStoryInfoActivity extends FragmentActivity {
 
     //create a new book and insert in into the DB
     public void addData(String title, String description, Bitmap image, String content){
-        BookInfo book = new BookInfo(title, description, image, content);
+        BookInfo book = new BookInfo(title, description, image, content, null);
         MyInfoManager.getInstance().addNewBook(book);
     }
 

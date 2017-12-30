@@ -28,10 +28,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String BOOKS_COLUMN_3_DESCRIPTION = "description";
     private static final String BOOKS_COLUMN_4__IMAGE = "image";
     private static final String BOOKS_COLUMN_5__CONTENT = "content";
+    private static final String BOOKS_COLUMN_6__WATTPAD_ID = "wattpad_id";
 
     //Book columns order
     private static final String[] BOOKS_COLUMNS = {BOOKS_COLUMN_1_ID, BOOKS_COLUMN_2_NAME,
-            BOOKS_COLUMN_3_DESCRIPTION, BOOKS_COLUMN_4__IMAGE, BOOKS_COLUMN_5__CONTENT};
+            BOOKS_COLUMN_3_DESCRIPTION, BOOKS_COLUMN_4__IMAGE, BOOKS_COLUMN_5__CONTENT, BOOKS_COLUMN_6__WATTPAD_ID};
 
 
     public DatabaseHelper(Context context){
@@ -47,7 +48,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                     + BOOKS_COLUMN_2_NAME + " TEXT, "
                     + BOOKS_COLUMN_3_DESCRIPTION + " TEXT, "
                     + BOOKS_COLUMN_4__IMAGE + " BLOB, "
-                    + BOOKS_COLUMN_5__CONTENT + " TEXT)";
+                    + BOOKS_COLUMN_5__CONTENT + " TEXT, "
+                    + BOOKS_COLUMN_6__WATTPAD_ID + " TEXT)";
             db.execSQL(CREATE_BOOKS_TABLE);
             Log.d(TAG,"created books table");
     }
@@ -73,6 +75,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(BOOKS_COLUMN_3_DESCRIPTION, book.getDescription());
         values.put(BOOKS_COLUMN_4__IMAGE, book.getImageAsByteArray());
         values.put(BOOKS_COLUMN_5__CONTENT, book.getContent());
+        values.put(BOOKS_COLUMN_6__WATTPAD_ID, book.getWattpadId());
 
         result = db.insert(BOOKS_TABLE_NAME,null,values);
         if(result > 0){
@@ -85,7 +88,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public List<BookInfo> getAllBooks(){
         List<BookInfo> result = new ArrayList<BookInfo>();
         //BOOKS_COLUMN_1_ID, BOOKS_COLUMN_2_NAME,
-        // BOOKS_COLUMN_3_DESCRIPTION, BOOKS_COLUMN_4__IMAGE, BOOKS_COLUMN_5__CONTENT
+        // BOOKS_COLUMN_3_DESCRIPTION, BOOKS_COLUMN_4__IMAGE, BOOKS_COLUMN_5__CONTENT, BOOKS_COLUMN_6__WATTPAD_ID
         Cursor cursor = null;
         try{
             cursor = db.query(BOOKS_TABLE_NAME, BOOKS_COLUMNS, null, null, null, null, null);
@@ -98,6 +101,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                     book.setDescription(cursor.getString(2));
                     book.setImageFromByteArray(cursor.getBlob(3));
                     book.setContent(cursor.getString(4));
+                    book.setWattpadId(cursor.getString(5));
                     result.add(book);
                     cursor.moveToNext();
                 }

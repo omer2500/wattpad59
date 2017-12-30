@@ -1,34 +1,33 @@
-package com.example.omer.wattpad59;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
-import java.io.ByteArrayOutputStream;
-import java.sql.Blob;
+package wattpad.backend.core;
 
 /**
- * Created by Yarden-PC on 11-Dec-17.
+ * Created by Yarden-PC on 30-Dec-17.
  */
 
 public class BookInfo {
 
-    String id;
-    String name;
-    String description;
-    Bitmap image;
-    String content;
+
+    private String id;
+    private String name;
+    private String description;
+    private byte[] image;
+    private String content;
     String wattpadId;
 
-    //Constructor
-    public BookInfo(String name, String description, Bitmap image, String content, String wattpadId) {
+    //Constructors
+    public BookInfo(String name, String description, byte[] image, String content, String wattpadId) {
         this.id = generateID();
         this.name = name;
         this.description = description;
         this.image = image;
         this.content = content;
         this.wattpadId = wattpadId;
-
     }
+
+    public BookInfo (String id){
+        this.id = id;
+    }
+
 
     //Getters and Setters
 
@@ -52,7 +51,7 @@ public class BookInfo {
         return description;
     }
 
-    public Bitmap getImage() {
+    public byte[] getImage() {
         return image;
     }
 
@@ -72,7 +71,7 @@ public class BookInfo {
         this.description = description;
     }
 
-    public void setImage(Bitmap image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
@@ -86,23 +85,5 @@ public class BookInfo {
 
     public void setWattpadId(String wattpadId) {
         this.wattpadId = wattpadId;
-    }
-
-    //convert image from bitmap to byte array
-    public byte[] getImageAsByteArray(){
-        byte[] res = new byte[0];
-        if(image!=null){
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.PNG,0,outputStream);
-            res = outputStream.toByteArray();
-        }
-        return res;
-    }
-
-    //convert image from byte array to bitmap
-    public void setImageFromByteArray(byte[] imageFromByteArray) {
-        if(imageFromByteArray!=null){
-            image = BitmapFactory.decodeByteArray(imageFromByteArray, 0, imageFromByteArray.length);
-        }
     }
 }
