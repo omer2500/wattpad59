@@ -1,6 +1,6 @@
-package wattpad.backend;
+package wattpad.backend.servlets;
 
-import wattpad.backend.core.BookInfo;
+import wattpad.backend.objects.BookInfo;
 import wattpad.backend.database.operations.ConnPool;
 import wattpad.backend.database.operations.BooksResProvider;
 

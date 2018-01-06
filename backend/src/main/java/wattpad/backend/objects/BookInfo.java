@@ -1,4 +1,8 @@
-package wattpad.backend.core;
+package wattpad.backend.objects;
+
+import java.util.List;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 /**
  * Created by Yarden-PC on 30-Dec-17.
@@ -86,4 +90,58 @@ public class BookInfo {
     public void setWattpadId(String wattpadId) {
         this.wattpadId = wattpadId;
     }
+
+
+    public JSONObject toJson() {
+
+        JSONObject iObj = new JSONObject();
+        iObj.put("id", getId());
+        iObj.put("name", getName());
+        iObj.put("description", getDescription());
+        iObj.put("content", getContent());
+        iObj.put("wattpadId", getWattpadId());
+        //iObj.put("img", isImageExists());
+
+        return iObj;
+    }
+
+//	private boolean isImageExists() {
+//		if (image == null || image.length == 0) {
+//			return false;
+//		}
+//		return true;
+//	}
+
+    public static String toJson(List<BookInfo> list) {
+
+        JSONObject jsonObj = new JSONObject();
+
+        if (list == null) {
+            return null;
+        }
+
+        if (list.size() == 0) {
+            return null;
+        }
+
+        JSONArray jsonArray = new JSONArray();
+
+        for (BookInfo postInfo : list) {
+
+            if (postInfo != null) {
+
+                JSONObject itemObj = postInfo.toJson();
+
+                jsonArray.add(itemObj);
+            }
+
+        }
+
+        jsonObj.put("books", jsonArray);
+
+        return jsonObj.toString(2);
+    }
+
+
+
 }
