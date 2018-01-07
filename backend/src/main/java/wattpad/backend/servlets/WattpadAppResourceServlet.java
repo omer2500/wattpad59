@@ -93,10 +93,10 @@ public class WattpadAppResourceServlet extends HttpServlet {
                     case GET_ALL_BOOKS_JSON_REQ: {
 
                         conn = ConnPool.getInstance().getConnection();
-                        BooksResProvider postsResProvider = new BooksResProvider();
-                        List<BookInfo> postsList = postsResProvider
+                        BooksResProvider booksResProvider = new BooksResProvider();
+                        List<BookInfo> booksList = booksResProvider
                                 .getAllBooks(conn);
-                        String resultJson = BookInfo.toJson(postsList);
+                        String resultJson = BookInfo.toJson(booksList);
 
                         if (resultJson != null && !resultJson.isEmpty()) {
                             respPage = resultJson;
@@ -151,16 +151,16 @@ public class WattpadAppResourceServlet extends HttpServlet {
 //						break;
 //					}
 //
-//						case INSERT_POST_REQ: {
-//							String id = req.getParameter(POST_ID);
+//						case INSERT_BOOK_REQ: {
+//							String id = req.getParameter(BOOK_ID);
 //
-//							String title = req.getParameter(POST_TITLE);
+//							String name = req.getParameter(BOOK_NAME);
+// 							String description = req.getParameter(BOOK_DESCRIPTION);
 //
-//							String content = req.getParameter(POST_CONTENT);
+//							String content = req.getParameter(BOOK_CONTENT);
 //
-//							String tumblerId = req.getParameter(TUMBLER_ID);
+//							String wattpadId = req.getParameter(WATTPAD_ID);
 //
-//							String tag = req.getParameter(POST_TAG);
 //
 //							respPage = RESOURCE_FAIL_TAG;
 //							resp.addHeader("Content-Type",
@@ -190,9 +190,9 @@ public class WattpadAppResourceServlet extends HttpServlet {
                         resp.addHeader("Content-Type",
                                 "application/json; charset=UTF-8");
                         conn = ConnPool.getInstance().getConnection();
-                        BooksResProvider postsResProvider = new BooksResProvider();
-                        BookInfo postInfo = new BookInfo(id);
-                        if (postsResProvider.deleteBook(postInfo, conn)) {
+                        BooksResProvider booksResProvider = new BooksResProvider();
+                        BookInfo bookInfo = new BookInfo(id);
+                        if (booksResProvider.deleteBook(bookInfo, conn)) {
                             respPage = RESOURCE_SUCCESS_TAG;
                         }
                         PrintWriter pw = resp.getWriter();
