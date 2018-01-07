@@ -168,7 +168,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
-    public List<BookInfo> getAllMyPosts(){
+    public List<BookInfo> getAllMyBooks(){
         List<BookInfo> results = new ArrayList<BookInfo>();
         Cursor cursor = null;
         try{

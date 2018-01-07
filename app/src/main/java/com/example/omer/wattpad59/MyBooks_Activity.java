@@ -50,7 +50,7 @@ public class MyBooks_Activity extends AppCompatActivity {
         mListView.setAdapter(adapter);
 
         //delete a book with alertDialog when long-clicking on listView item
-        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        /*mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 position = i;
@@ -79,7 +79,7 @@ public class MyBooks_Activity extends AppCompatActivity {
                 alert.show();
                 return true;
             }
-        });
+        });*/
 
         //Set reading the book content when clicking on item
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -134,9 +134,9 @@ public class MyBooks_Activity extends AppCompatActivity {
     }
 
     //Delete a book by calling to the deletion function in MyInfoManager and sending the book ID
-    public void delete(String id){
+    /*public void delete(String id){
         MyInfoManager.getInstance().deleteBook(id);
-    }
+    }*/
 
     //create customizable toast
     public void toastMessage(String message){

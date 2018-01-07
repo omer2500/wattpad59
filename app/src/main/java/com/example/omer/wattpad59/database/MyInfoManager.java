@@ -5,6 +5,9 @@ import android.graphics.Bitmap;
 import android.widget.Toast;
 
 import com.example.omer.wattpad59.core.BookInfo;
+import com.example.omer.wattpad59.network.utils.NetworkConnector;
+import com.example.omer.wattpad59.network.utils.NetworkResListener;
+import com.example.omer.wattpad59.network.utils.ResStatus;
 
 import org.json.JSONObject;
 
@@ -16,7 +19,7 @@ import java.util.List;
  * This is the singleton
  */
 
-public class MyInfoManager {
+public class MyInfoManager implements NetworkResListener {
 
     private static MyInfoManager instance=null;
     private Context context;
@@ -41,12 +44,12 @@ public class MyInfoManager {
     }
 
     @Override
-    public void onPostUpdate(byte[] res, ResStatus status) {
+    public void onBookUpdate(byte[] res, ResStatus status) {
         Toast.makeText(context,"Sync finished...status " + status.toString(),Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void onPostUpdate(JSONObject res, ResStatus status) {
+    public void onBookUpdate(JSONObject res, ResStatus status) {
         if(res!=null){
             Toast.makeText(context,"Sync finished...status " + res.toString(),Toast.LENGTH_SHORT).show();
         }
@@ -56,15 +59,15 @@ public class MyInfoManager {
     }
 
     @Override
-    public void onPostUpdate(Bitmap res, ResStatus status) {
+    public void onBookUpdate(Bitmap res, ResStatus status) {
     }
 
-    public Bitmap getTakenPostPicture() {
-        return takenPostPicture;
+    public Bitmap getTakenBookPicture() {
+        return takenBookPicture;
     }
 
-    public void setTakenPostPicture(Bitmap takenPostPicture) {
-        this.takenPostPicture = takenPostPicture;
+    public void setTakenBookPicture(Bitmap takenBookPicture) {
+        this.takenBookPicture = takenBookPicture;
     }
 
     public String getMyUserId() {
@@ -75,93 +78,83 @@ public class MyInfoManager {
         this.myUserId = myUserId;
     }
 
-    public void openDataBase(Context ctx){
-        this.context = ctx;
-        dataBase = new PostsDataBase(context);
-        dataBase.open();
-    }
 
-
-    public void addNewPost(PostInfo post){
-        if(dataBase!=null) {
-            if(dataBase.addNewPostInfo(post)) {
-                NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.INSERT_POST_REQ, post, instance);
+    public void addNewBook(BookInfo book){
+        if(databaseHelper!=null) {
+            if(databaseHelper.addNewBookInfo(book)) {
+                NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.INSERT_BOOK_REQ, book, instance);
             }
-
         }
     }
 
-    public List<PostInfo> getAllPosts(){
-        List<PostInfo> list = new ArrayList<PostInfo>();
-        if(dataBase!=null) {
-            list = dataBase.getAllPosts();
+    public List<BookInfo> getAllBooks(){
+        List<BookInfo> list = new ArrayList<BookInfo>();
+        if(databaseHelper!=null) {
+            list = databaseHelper.getAllBooks();
         }
         return list;
     }
 
-    public List<PostInfo> getAllMyPosts(){
-
-        List<PostInfo> list = new ArrayList<PostInfo>();
-        if(dataBase!=null) {
-            list = dataBase.getAllMyPosts();
+    public List<BookInfo> getAllMyBooks(){
+        List<BookInfo> list = new ArrayList<BookInfo>();
+        if(databaseHelper!=null) {
+            list = databaseHelper.getAllMyBooks();
         }
         return list;
 
     }
 
 
-    public boolean deletePost(PostInfo post){
+    public boolean deleteBook(BookInfo book){
         boolean result = false;
-        if(dataBase!=null) {
-            result=dataBase.deletePostInfo(post);
+        if(databaseHelper!=null) {
+            result=databaseHelper.deleteBookInfo(book);
             if(result){
-                NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.DELETE_POST_REQ, post, instance);
+                NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.DELETE_BOOK_REQ, book, instance);
             }
         }
         return result;
     }
 
-    public boolean updatePost(PostInfo post){
+    public boolean updateBook(BookInfo book){
         boolean result = false;
-        if(dataBase!=null) {
-            result =dataBase.updatePostInfo(post);
+        if(databaseHelper!=null) {
+            result =databaseHelper.updateBookInfo(book);
             if(result){
-                NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.INSERT_POST_REQ, post, instance);
+                NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.INSERT_BOOK_REQ, book, instance);
             }
         }
         return result;
     }
 
-    public void setEditPost(PostInfo editPost) {
-        this.editPost = editPost;
+    public void setEditBook(BookInfo editBook) {
+        this.editBook = editBook;
     }
 
-    public PostInfo getEditPost() {
-        return editPost;
+    public BookInfo getEditBook() {
+        return editBook;
     }
 
-    public void updatePosts(JSONObject res) {
-        if(dataBase==null){
+    public void updateBooks(JSONObject res) {
+        if(databaseHelper==null){
             return;
         }
-        List<PostInfo> posts = PostInfo.parseJson(res);
-        for(PostInfo post:posts){
-            if(!dataBase.addNewPostInfo(post)) {
-                dataBase.updatePostInfo(post);
+        List<BookInfo> books = BookInfo.parseJson(res);
+        for(BookInfo book:books){
+            if(!databaseHelper.addNewBookInfo(book)) {
+                databaseHelper.updateBookInfo(book);
             }
         }
     }
 
-
-    public void updatePostImage(PostInfo post){
-        if(post.getImg()!=null) {
-            String itemId = post.getId();
-            if(dataBase!=null){
-                dataBase.updatePostImage(post);
+    public void updateBookImage(BookInfo book){
+        if(book.getImage()!=null) {
+            String itemId = book.getId();
+            if(databaseHelper!=null){
+                databaseHelper.updateBookImage(book);
             }
         }
     }
-
 
 
     //Open the database
@@ -178,17 +171,13 @@ public class MyInfoManager {
     }
 
     //Add new book. Calling the addNewBook function in DatabaseHelper activity
-    public boolean addNewBook(BookInfo book){
-        return databaseHelper.addNewBookInfo(book);
-    }
+    //public boolean addNewBook(BookInfo book){
+    //    return databaseHelper.addNewBookInfo(book);
+    //}
 
-    //Get all books in DB. Calling the getAllBooks function in DatabaseHelper activity
-    public List<BookInfo> getAllBooks(){
-        return databaseHelper.getAllBooks();
-    }
 
     //Delete a book. Calling the delete function in DatabaseHelper activity
-    public boolean deleteBook(String id){
+    /*public boolean deleteBook(String id){
         return databaseHelper.delete(id);
-    }
+    }*/
 }
