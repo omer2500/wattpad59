@@ -32,7 +32,12 @@ public class BookInfo {
         this.image = image;
         this.content = content;
         this.wattpadId = wattpadId;
+    }
 
+    public BookInfo(Bitmap image, String name, String description){
+        this.image = image;
+        this.name = name;
+        this.description = description;
     }
 
     //Getters and Setters
