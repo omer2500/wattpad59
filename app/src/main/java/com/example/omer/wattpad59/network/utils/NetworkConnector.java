@@ -37,13 +37,14 @@ public class NetworkConnector {
     private static Context mCtx;
 
 
-    private final String HOST_URL =  "http://10.0.2.2:8080/"; //"http://192.168.1.103:8080/";
+    private final String HOST_URL =  "http://127.0.0.1:8080/"; //"http://192.168.1.103:8080/";
     private  final String BASE_URL = HOST_URL + "app_res";
+
 
     private int TIME_OUT = 10000;
     public static  int GET_ALL_BOOKS_JSON_REQ = 0;
-    //private static final int INSERT_WATTPAD_REQ = 1;
-    //private static final int DELETE_WATTPAD_REQ = 2;
+    private static final int INSERT_WATTPAD_REQ = 1;
+    private static final int DELETE_WATTPAD_REQ = 2;
 
     public static final int DELETE_BOOK_REQ = 3;
     public static final int GET_BOOK_IMAGE_REQ = 4;

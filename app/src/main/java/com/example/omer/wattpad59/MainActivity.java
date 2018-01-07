@@ -11,7 +11,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.omer.wattpad59.adapters.SectionsPageAdapter;
 import com.example.omer.wattpad59.database.MyInfoManager;
 import com.example.omer.wattpad59.fragments.BrowseFragment;
@@ -32,10 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
         MyInfoManager.getInstance().openDatabase(this);
         NetworkConnector.getInstance().initialize(this);
-
         setTitle(R.string.home); //set toolbar title
 
         Log.d(TAG,"onCreate: String.");
+
+
 
 
 //***************************BOTTOM NAVIGATION BAR*****************************************************

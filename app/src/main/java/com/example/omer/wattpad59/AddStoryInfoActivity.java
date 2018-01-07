@@ -9,6 +9,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,8 +19,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.omer.wattpad59.core.BookInfo;
 import com.example.omer.wattpad59.database.MyInfoManager;
+import com.example.omer.wattpad59.network.utils.VolleyMultipartRequest;
+
+import org.json.JSONObject;
+
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Yarden-PC on 27-Nov-17.
@@ -47,6 +62,8 @@ public class AddStoryInfoActivity extends FragmentActivity {
         publishButton = (Button) findViewById(R.id.publishButton);
 
         MyInfoManager.getInstance().openDatabase(this);
+
+
 
         //Open gallery when clicking on "Add cover"
         textView.setOnClickListener(new View.OnClickListener() {
