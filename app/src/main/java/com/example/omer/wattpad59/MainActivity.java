@@ -16,6 +16,7 @@ import com.example.omer.wattpad59.adapters.SectionsPageAdapter;
 import com.example.omer.wattpad59.database.MyInfoManager;
 import com.example.omer.wattpad59.fragments.BrowseFragment;
 import com.example.omer.wattpad59.fragments.RecommendedFragment;
+import com.example.omer.wattpad59.network.utils.NetworkConnector;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         MyInfoManager.getInstance().openDatabase(this);
+        NetworkConnector.getInstance().initialize(this);
 
         setTitle(R.string.home); //set toolbar title
 
