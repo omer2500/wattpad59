@@ -24,13 +24,13 @@ import java.util.List;
 /**
  * Created by NgocTri on 11/15/2015.
  */
-public class customAdapter2 extends BaseAdapter {
+public class MybooksAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<BookInfo> bookList;
 
     //Constructor
-    public customAdapter2(Context mContext, List<BookInfo> bookList) {
+    public MybooksAdapter(Context mContext, List<BookInfo> bookList) {
         this.mContext = mContext;
         this.bookList = bookList;
     }
@@ -51,7 +51,7 @@ public class customAdapter2 extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View v = View.inflate(mContext, R.layout.custom_listview, null);
+        View v = View.inflate(mContext, R.layout.custom_listview2, null);
         final BookInfo book= bookList.get(position);
 
         TextView bookName = (TextView)v.findViewById(R.id.bookName);
@@ -99,6 +99,18 @@ public class customAdapter2 extends BaseAdapter {
                     }
                 }
 
+            }
+        });
+
+
+        ImageButton deleteBtn = (ImageButton) v.findViewById(R.id.delete_btn);
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(MyInfoManager.getInstance().deleteBook(book)) {
+                    bookList.remove(book);
+                    MybooksAdapter.this.notifyDataSetChanged();
+                }
             }
         });
 
