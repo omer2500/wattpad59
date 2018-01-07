@@ -12,6 +12,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.omer.wattpad59.adapters.SectionsPageAdapter;
+import com.example.omer.wattpad59.database.MyInfoManager;
+import com.example.omer.wattpad59.fragments.BrowseFragment;
+import com.example.omer.wattpad59.fragments.RecommendedFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG="MainActivity";

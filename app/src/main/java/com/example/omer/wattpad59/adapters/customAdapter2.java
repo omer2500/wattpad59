@@ -1,4 +1,4 @@
-package com.example.omer.wattpad59;
+package com.example.omer.wattpad59.adapters;
 
 
 import android.content.Context;
@@ -8,18 +8,21 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.omer.wattpad59.R;
+import com.example.omer.wattpad59.core.BookInfo;
+
 import java.util.List;
 
 /**
  * Created by NgocTri on 11/15/2015.
  */
-public class customAdapter extends BaseAdapter {
+public class customAdapter2 extends BaseAdapter {
 
     private Context mContext;
-    private List<bookTemplate> bookList;
+    private List<BookInfo> bookList;
 
     //Constructor
-    public customAdapter(Context mContext, List<bookTemplate> bookList) {
+    public customAdapter2(Context mContext, List<BookInfo> bookList) {
         this.mContext = mContext;
         this.bookList = bookList;
     }
@@ -47,9 +50,9 @@ public class customAdapter extends BaseAdapter {
         ImageView bookImage = (ImageView)v.findViewById(R.id.imageView);
 
         //Set text for the view
-        bookName.setText(bookList.get(position).getBookName());
-        bookDescription.setText(String.valueOf(bookList.get(position).getBookDescription()));
-        bookImage.setImageResource(bookList.get(position).getImage());
+        bookName.setText(bookList.get(position).getName());
+        bookDescription.setText(String.valueOf(bookList.get(position).getDescription()));
+        bookImage.setImageBitmap(bookList.get(position).getImage());
 
         return v;
     }

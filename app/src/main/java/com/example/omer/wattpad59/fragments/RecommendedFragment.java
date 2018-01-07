@@ -1,4 +1,4 @@
-package com.example.omer.wattpad59;
+package com.example.omer.wattpad59.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.omer.wattpad59.R;
 
 /**
  * Created by omer on 26/11/2017.

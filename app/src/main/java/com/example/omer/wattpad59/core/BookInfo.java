@@ -1,10 +1,15 @@
-package com.example.omer.wattpad59;
+package com.example.omer.wattpad59.core;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.sql.Blob;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Yarden-PC on 11-Dec-17.
@@ -89,20 +94,52 @@ public class BookInfo {
     }
 
     //convert image from bitmap to byte array
-    public byte[] getImageAsByteArray(){
-        byte[] res = new byte[0];
-        if(image!=null){
+    public static byte[] getImgAsByteArray(Bitmap bm){
+        byte[] res= new byte[0];
+        if(bm != null){
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            image.compress(Bitmap.CompressFormat.PNG,0,outputStream);
+            bm.compress(Bitmap.CompressFormat.PNG,0,outputStream);
             res = outputStream.toByteArray();
         }
         return res;
     }
 
-    //convert image from byte array to bitmap
-    public void setImageFromByteArray(byte[] imageFromByteArray) {
-        if(imageFromByteArray!=null){
-            image = BitmapFactory.decodeByteArray(imageFromByteArray, 0, imageFromByteArray.length);
+    public void setImg(byte[] imgeArray){
+        if(imgeArray!=null){
+            this.image = BitmapFactory.decodeByteArray(imgeArray, 0, imgeArray.length);
         }
+    }
+
+    public static List<BookInfo> parseJson(JSONObject json) {
+
+        List<BookInfo> books = null;
+        try {
+
+            books = new ArrayList<BookInfo>();
+
+            JSONArray foldersJsonArr = json.getJSONArray("books");
+
+            for (int i = 0; i < foldersJsonArr.length(); i++) {
+                try {
+                    JSONObject iObj = foldersJsonArr.getJSONObject(i);
+                    BookInfo book = new BookInfo();
+                    book.setId(iObj.getString("id"));
+                    book.setName(iObj.getString("name"));
+                    book.setDescription(iObj.getString("description"));
+                    book.setContent(iObj.getString("content"));
+                    book.setWattpadId(iObj.getString("wattpad_id"));
+
+                    books.add(book);
+
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
+            }
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+
+        return books;
     }
 }

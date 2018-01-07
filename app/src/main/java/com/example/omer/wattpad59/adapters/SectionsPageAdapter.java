@@ -1,4 +1,4 @@
-package com.example.omer.wattpad59;
+package com.example.omer.wattpad59.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

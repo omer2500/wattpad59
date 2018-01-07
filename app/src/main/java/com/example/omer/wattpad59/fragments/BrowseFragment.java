@@ -1,4 +1,4 @@
-package com.example.omer.wattpad59;
+package com.example.omer.wattpad59.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.omer.wattpad59.BooksActivity;
+import com.example.omer.wattpad59.R;
 
 /**
  * Created by omer on 26/11/2017.

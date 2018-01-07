@@ -1,10 +1,11 @@
 package com.example.omer.wattpad59;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ListView;
+
+import com.example.omer.wattpad59.adapters.customAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
