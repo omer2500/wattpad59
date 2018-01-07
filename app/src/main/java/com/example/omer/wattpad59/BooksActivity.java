@@ -3,6 +3,9 @@ package com.example.omer.wattpad59;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.omer.wattpad59.adapters.customAdapter;
@@ -39,6 +42,8 @@ public class BooksActivity extends AppCompatActivity {
         //Init adapter
         adapter = new customAdapter(getApplicationContext(), bookList);
         bookListView.setAdapter(adapter);
+
+
     }
 
     //Set the list according to the category
