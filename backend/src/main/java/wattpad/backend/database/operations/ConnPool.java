@@ -12,7 +12,7 @@ public class ConnPool {
 
 	static ConnPool instance = null;
 	
-	private String dataBaseName = "tumblers_db";
+	private String dataBaseName = "wattpad_db";
 	private String user = "root";
 	private String password = "1234";
 
