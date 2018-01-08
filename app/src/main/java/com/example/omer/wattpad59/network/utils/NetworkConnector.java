@@ -37,7 +37,7 @@ public class NetworkConnector {
     private static Context mCtx;
 
 
-    private final String HOST_URL =  "http://127.0.0.1:8080/"; //"http://192.168.1.103:8080/";
+    private final String HOST_URL =  "http://10.0.0.2:8080/"; //"http://192.168.1.103:8080/";
     private  final String BASE_URL = HOST_URL + "app_res";
 
 
