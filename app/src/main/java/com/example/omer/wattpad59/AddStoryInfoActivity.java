@@ -42,7 +42,7 @@ import java.util.Map;
 
 public class AddStoryInfoActivity extends FragmentActivity {
 
-    private EditText storyTitle, storyDescription, storyContent;
+    private EditText storyId, storyTitle, storyDescription, storyContent;
     private Button publishButton;
     private ImageView imageView;
     TextView textView;
@@ -54,6 +54,8 @@ public class AddStoryInfoActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_story_info);
+
+        storyId = (EditText) findViewById(R.id.storyId);
         storyTitle = (EditText) findViewById(R.id.storyTitle);
         storyDescription = (EditText) findViewById(R.id.storyDescription);
         storyContent = (EditText) findViewById(R.id.storyContent);
@@ -116,6 +118,7 @@ public class AddStoryInfoActivity extends FragmentActivity {
         publishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String id = storyId.getText().toString();
                 String title = storyTitle.getText().toString();
                 String description = storyDescription.getText().toString();
                 Bitmap image;
@@ -125,9 +128,10 @@ public class AddStoryInfoActivity extends FragmentActivity {
                     image = null;
                 }
                 String content = storyContent.getText().toString();
-                if(storyTitle.length() !=0 && storyDescription.length() !=0 && storyContent.length() !=0 && image !=null){
-                    addData(title, description, image, content);
+                if(storyId.length() != 0 && storyTitle.length() !=0 && storyDescription.length() !=0 && storyContent.length() !=0){
+                    addData(id, title, description, image, content);
                     //Reset all input fields
+                    storyId.setText("");
                     storyTitle.setText("");
                     storyDescription.setText("");
                     imageView.setImageURI(null);
@@ -161,8 +165,8 @@ public class AddStoryInfoActivity extends FragmentActivity {
     }
 
     //create a new book and insert in into the DB
-    public void addData(String title, String description, Bitmap image, String content){
-        BookInfo book = new BookInfo(title, description, image, content, null);
+    public void addData(String id, String title, String description, Bitmap image, String content){
+        BookInfo book = new BookInfo(id, title, description, image, content);
         MyInfoManager.getInstance().addNewBook(book);
     }
 

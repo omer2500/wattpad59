@@ -37,7 +37,7 @@ public class NetworkConnector {
     private static Context mCtx;
 
 
-    private final String HOST_URL =  "http://10.0.0.2:8080/"; //"http://192.168.1.103:8080/";
+    private final String HOST_URL =  "http://10.0.0.14:8080/"; //"http://192.168.1.103:8080/";
     private  final String BASE_URL = HOST_URL + "app_res";
 
 
@@ -176,7 +176,7 @@ public class NetworkConnector {
     }
 
 
-    private void uploadPostInfo(final BookInfo item, final NetworkResListener listener) {
+    private void uploadBookInfo(final BookInfo item, final NetworkResListener listener) {
 
         String reqUrl = HOST_URL + "upload_book?";
         notifyPreUpdateListener(listener);
@@ -263,7 +263,7 @@ public class NetworkConnector {
         switch (requestCode){
             case INSERT_BOOK_REQ:{
 
-                uploadPostInfo(data, listener);
+                uploadBookInfo(data, listener);
 
                 break;
             }
