@@ -126,7 +126,7 @@ public class UploadBookServlet extends HttpServlet{
 
                 conn = ConnPool.getInstance().getConnection();
                 BooksResProvider itemResProvider = new BooksResProvider();
-                BookInfo bookInfo = new BookInfo(name, description, image, content, wattpadId);
+                BookInfo bookInfo = new BookInfo(id, name, description, image, content);
                 if(itemResProvider.insertBookInfo(bookInfo, conn)) {
                     respPage = RESOURCE_SUCCESS_TAG;
                 }

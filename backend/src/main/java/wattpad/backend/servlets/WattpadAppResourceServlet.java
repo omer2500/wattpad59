@@ -82,7 +82,7 @@ public class WattpadAppResourceServlet extends HttpServlet {
         if (userReq != null) {
 
             int reqNo = Integer.valueOf(userReq);
-            System.out.println("TumblerAppResourceServlet:: req code ==>" + reqNo);
+            System.out.println("WattpadAppResourceServlet:: req code ==>" + reqNo);
             //while (retry > 0) {
 
             try {

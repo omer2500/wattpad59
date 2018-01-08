@@ -19,14 +19,14 @@ public class BookInfo {
     String wattpadId;
 
     //Constructors
-    public BookInfo(String name, String description, byte[] image, String content, String wattpadId) {
-        this.id = generateID();
+    public BookInfo(String id, String name, String description, byte[] image, String content) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.content = content;
-        this.wattpadId = wattpadId;
     }
+
 
     public BookInfo (String id){
         this.id = id;
@@ -35,12 +35,11 @@ public class BookInfo {
 
     //Getters and Setters
 
-    private String generateID(){
+    /*private String generateID(){
         return "book_" + System.currentTimeMillis();
-    }
+    }*/
 
     public BookInfo(){
-        this.id = generateID();
     }
 
     public String getId() {

@@ -26,7 +26,7 @@ public class BooksResProvider {
 
     private static final String select_img_sql = "SELECT image FROM  books WHERE book_id=?;";
 
-    private static final String insert_sql = "INSERT INTO books (name, description, content, image, wattpad_id) VALUES (?, ?, ?, ?, ?);";
+    private static final String insert_sql = "INSERT INTO books (book_id, name, description, content, image, wattpad_id) VALUES (?, ?, ?, ?, ?, ?);";
 
     private static final String delete_sql = "DELETE FROM books WHERE book_id=?;";
 
@@ -63,8 +63,8 @@ public class BooksResProvider {
 
                 String bookContent = rs.getString(5);
                 String wattpadID = rs.getString(6);
-                BookInfo bookInfo = new BookInfo(bookName, bookDescription, image,
-                        bookContent, wattpadID);
+                BookInfo bookInfo = new BookInfo(bookId, bookName, bookDescription, image,
+                        bookContent);
 
                 results.add(bookInfo);
 
@@ -131,8 +131,8 @@ public class BooksResProvider {
 
                 String bookContent = rs.getString(5);
                 String wattpadID = rs.getString(6);
-                BookInfo bookInfo = new BookInfo(bookName, bookDescription, image,
-                        bookContent, wattpadID);
+                BookInfo bookInfo = new BookInfo(bookId, bookName, bookDescription, image,
+                        bookContent);
 
                 results.add(bookInfo);
 
@@ -253,24 +253,26 @@ public class BooksResProvider {
                     // its execute update
                     ps = (PreparedStatement) conn.prepareStatement(update_sql);
 
-                    ps.setString(1, name);
-                    ps.setString(2, description);
+                    ps.setString(1, book_id);
+                    ps.setString(2, name);
+                    ps.setString(3, description);
+                    ps.setString(4, content);
 
                     if (imageBytes != null) {
                         InputStream is = new ByteArrayInputStream(imageBytes);
-                        ps.setBlob(3, is);
+                        ps.setBlob(5, is);
 
                     } else {
 
-                        ps.setNull(3, Types.BLOB);
+                        ps.setNull(5, Types.BLOB);
                     }
 
 
 
-                    ps.setString(4, content);
+
 
                     // where
-                    ps.setString(5, book_id);
+                    ps.setString(6, wattpad_id);
 
                     ps.execute();
 
@@ -280,19 +282,21 @@ public class BooksResProvider {
 
                     // its execute insert
                     ps = (PreparedStatement) conn.prepareStatement(insert_sql);
-                    ps.setString(1, name);
-                    ps.setString(2, description);
+                    ps.setString(1, book_id);
+                    ps.setString(2, name);
+                    ps.setString(3, description);
+                    ps.setString(4, content);
 
                     if (imageBytes != null) {
                         InputStream is = new ByteArrayInputStream(imageBytes);
-                        ps.setBlob(3, is);
+                        ps.setBlob(5, is);
 
                     } else {
 
-                        ps.setNull(3, Types.BLOB);
+                        ps.setNull(5, Types.BLOB);
                     }
-                    ps.setString(4, content);
-                    ps.setString(5, wattpad_id);
+
+                    ps.setString(6, wattpad_id);
 
                     ps.execute();
 
