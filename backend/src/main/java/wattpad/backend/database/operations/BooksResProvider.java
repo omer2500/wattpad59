@@ -54,14 +54,15 @@ public class BooksResProvider {
                 String bookId = rs.getString(1);
                 String bookName = rs.getString(2);
                 String bookDescription = rs.getString(3);
+                String bookContent = rs.getString(4);
 
-                java.sql.Blob imageBlob = rs.getBlob(4);
+                java.sql.Blob imageBlob = rs.getBlob(5);
                 byte[] image = null;
                 if (imageBlob != null) {
                     image = imageBlob.getBytes(1, (int) imageBlob.length());
                 }
 
-                String bookContent = rs.getString(5);
+
                 String wattpadID = rs.getString(6);
                 BookInfo bookInfo = new BookInfo(bookId, bookName, bookDescription, image,
                         bookContent);
@@ -122,14 +123,15 @@ public class BooksResProvider {
                 String bookId = rs.getString(1);
                 String bookName = rs.getString(2);
                 String bookDescription = rs.getString(3);
+                String bookContent = rs.getString(4);
 
-                java.sql.Blob imageBlob = rs.getBlob(4);
+                java.sql.Blob imageBlob = rs.getBlob(5);
                 byte[] image = null;
                 if (imageBlob != null) {
                     image = imageBlob.getBytes(1, (int) imageBlob.length());
                 }
 
-                String bookContent = rs.getString(5);
+
                 String wattpadID = rs.getString(6);
                 BookInfo bookInfo = new BookInfo(bookId, bookName, bookDescription, image,
                         bookContent);

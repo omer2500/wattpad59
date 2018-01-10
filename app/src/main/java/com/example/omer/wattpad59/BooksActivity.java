@@ -26,7 +26,7 @@ public class BooksActivity extends AppCompatActivity {
 
     private ListView bookListView;
     private customAdapter2 adapter;
-    private List<com.example.omer.wattpad59.core.BookInfo> bookList;
+    private List<BookInfo> bookList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class BooksActivity extends AppCompatActivity {
         //set the chosen category from Browse_fragment to  variable
         String data=getIntent().getExtras().getString("str");
 
-        bookList=new ArrayList<>();
+        //bookList=new ArrayList<>();
 
         //inserting the books to array according to user choice from browser fragment
         setContent(data);
@@ -54,14 +54,14 @@ public class BooksActivity extends AppCompatActivity {
     public void setContent(String data) {
         switch (data) {
             case "action":
-                initData();
-                convertToBitmap(R.drawable.actionbook1);
+                bookList = MyInfoManager.getInstance().getAllBooks();
+                /*convertToBitmap(R.drawable.actionbook1);
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook1), "Breaker", "this is book1"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook2), "The Eye Of Minds", "this is book2"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook3), "Loose Ends", "this is book3"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook4), "Hunger Games", "this is book4"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook5), "In The Blood", "this is book5"));
-                Log.d("TAG","inserted action books to array");
+                Log.d("TAG","inserted action books to array");*/
                 break;
 
             case "fantasy":

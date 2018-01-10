@@ -98,6 +98,7 @@ public class BookInfo {
         iObj.put("name", getName());
         iObj.put("description", getDescription());
         iObj.put("content", getContent());
+        iObj.put("image", getImage());
         iObj.put("wattpadId", getWattpadId());
         //iObj.put("img", isImageExists());
 
