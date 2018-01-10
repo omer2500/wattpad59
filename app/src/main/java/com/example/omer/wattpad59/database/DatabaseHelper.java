@@ -232,6 +232,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return result;
     }
 
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }

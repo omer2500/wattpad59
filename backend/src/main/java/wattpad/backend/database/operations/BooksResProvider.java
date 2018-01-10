@@ -24,6 +24,8 @@ public class BooksResProvider {
 
     private static final String select_sql = "SELECT * FROM  books WHERE book_id=?;";
 
+    private static final String select_category_sql = "SELECT * FROM  books WHERE wattpad_id=?;";
+
     private static final String select_img_sql = "SELECT image FROM  books WHERE book_id=?;";
 
     private static final String insert_sql = "INSERT INTO books (book_id, name, description, content, image, wattpad_id) VALUES (?, ?, ?, ?, ?, ?);";
@@ -98,6 +100,76 @@ public class BooksResProvider {
 
         return results;
     }
+
+
+    public List<BookInfo> getAllBooksByCategory(Connection conn, String category) throws SQLException {
+
+        List<BookInfo> results = new ArrayList<BookInfo>();
+
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        try {
+
+            ps = conn.prepareStatement(select_category_sql);
+
+            ps.setString(1, category);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                String bookId = rs.getString(1);
+                String bookName = rs.getString(2);
+                String bookDescription = rs.getString(3);
+                String bookContent = rs.getString(4);
+
+                java.sql.Blob imageBlob = rs.getBlob(5);
+                byte[] image = null;
+                if (imageBlob != null) {
+                    image = imageBlob.getBytes(1, (int) imageBlob.length());
+                }
+
+
+                String wattpadID = rs.getString(6);
+                BookInfo bookInfo = new BookInfo(bookId, bookName, bookDescription, image,
+                        bookContent);
+
+                results.add(bookInfo);
+
+            }
+
+        } catch (SQLException e) {
+            throw e;
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+
+        } finally {
+            if (rs != null) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            if (ps != null) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return results;
+    }
+
+
+
+
+
 
     public List<BookInfo> getAllBooksByWattpad(WattpadInfo wattpadInfo, Connection conn)
             throws SQLException {

@@ -95,6 +95,12 @@ public class MyInfoManager implements NetworkResListener {
         return list;
     }
 
+    /*public List<BookInfo> getAllBooksByCategory(String category){
+        List<BookInfo> list = new ArrayList<BookInfo>();
+        NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.INSERT_BOOK_REQ, category, instance);
+        return list;
+    }*/
+
     public List<BookInfo> getAllMyBooks(){
         List<BookInfo> list = new ArrayList<BookInfo>();
         if(databaseHelper!=null) {
