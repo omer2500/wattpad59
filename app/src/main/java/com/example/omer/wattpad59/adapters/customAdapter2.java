@@ -24,6 +24,7 @@ import java.util.List;
 /**
  * Created by NgocTri on 11/15/2015.
  */
+
 public class customAdapter2 extends BaseAdapter {
 
     private Context mContext;

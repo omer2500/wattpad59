@@ -141,6 +141,7 @@ public class AddStoryInfoActivity extends FragmentActivity {
                     Intent intent = new Intent(AddStoryInfoActivity.this, MyBooks_Activity.class);
                     startActivity(intent);
 
+
                 }else{
                     toastMessage("You must fill everything"); //toast delete message (Not working with R.strings!)
                 }

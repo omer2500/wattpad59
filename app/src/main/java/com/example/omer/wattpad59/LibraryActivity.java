@@ -9,18 +9,38 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.omer.wattpad59.adapters.customAdapter2;
+import com.example.omer.wattpad59.core.BookInfo;
 
 import java.util.List;
 
+
 public class LibraryActivity extends AppCompatActivity {
+
+    BooksActivity ba=new BooksActivity();
+    public List<BookInfo> bookList =ba.getBookListfav();
+    private ListView bookListView;
+    private customAdapter2 adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
 
+
+
         setTitle(R.string.library); //set toolbar title
+
+        bookListView = (ListView)findViewById(R.id.listView3);
+
+        //Init adapter
+        adapter = new customAdapter2(getApplicationContext(), bookList);
+        bookListView.setAdapter(adapter);
+
+
 
 
         //***************************BOTTOM NAVIGATION BAR*****************************************************
