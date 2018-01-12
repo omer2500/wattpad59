@@ -15,13 +15,14 @@ import android.widget.TextView;
 import com.example.omer.wattpad59.adapters.customAdapter2;
 import com.example.omer.wattpad59.core.BookInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class LibraryActivity extends AppCompatActivity {
 
     BooksActivity ba=new BooksActivity();
-    public List<BookInfo> bookList =ba.getBookListfav();
+    public List<BookInfo> bookListfav=ba.getBookListfav();
     private ListView bookListView;
     private customAdapter2 adapter;
 
@@ -29,14 +30,13 @@ public class LibraryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
-
-
+//        bookListfav=new ArrayList<>();
         setTitle(R.string.library); //set toolbar title
-
         bookListView = (ListView)findViewById(R.id.listView3);
 
+
         //Init adapter
-        adapter = new customAdapter2(getApplicationContext(), bookList);
+        adapter = new customAdapter2(getApplicationContext(), bookListfav);
         bookListView.setAdapter(adapter);
 
 
@@ -79,4 +79,9 @@ public class LibraryActivity extends AppCompatActivity {
         //***************************BOTTOM NAVIGATION BAR*****************************************************
 
     }
+
 }
+
+
+
+
