@@ -55,7 +55,7 @@ public class MyBooks_Activity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 position = i;
                 AlertDialog.Builder alert = new AlertDialog.Builder(MyBooks_Activity.this);
-                alert.setMessage(R.string.alertDialogMessage).setCancelable(false)
+                alert.setMessage(R.string.alertDialogMessageDelete).setCancelable(false)
                         .setPositiveButton(R.string.positiveButtonAlertDialog, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -67,7 +67,7 @@ public class MyBooks_Activity extends AppCompatActivity {
                                 bookList= MyInfoManager.getInstance().getAllBooks();
                                 adapter = new customAdapter2(MyBooks_Activity.this, bookList);
                                 mListView.setAdapter(adapter);
-                               toastMessage(name + " Book Deleted"); //toast delete message (Not working with R.strings!)
+                               toastMessage(name + " Deleted"); //toast delete message (Not working with R.strings!)
                             }
                         })
                         .setNegativeButton(R.string.negativeButtonAlertDialog, new DialogInterface.OnClickListener() {

@@ -1,5 +1,7 @@
 package com.example.omer.wattpad59;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -7,14 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.omer.wattpad59.adapters.customAdapter2;
 import com.example.omer.wattpad59.core.BookInfo;
 import com.example.omer.wattpad59.database.MyInfoManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,9 +27,9 @@ public class BooksActivity extends AppCompatActivity {
 
     private ListView bookListView;
     private customAdapter2 adapter;
-    private List<BookInfo> bookList;
+    List<BookInfo> bookList;
     private List<BookInfo> bookListfav;
-
+    Integer position;
 
 
     @Override
@@ -48,22 +49,51 @@ public class BooksActivity extends AppCompatActivity {
         //Init adapter
         adapter = new customAdapter2(getApplicationContext(), bookList);
         bookListView.setAdapter(adapter);
+
+
+        //add book to library when long-clicking on listView item
+        bookListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                position = i;
+                AlertDialog.Builder alert = new AlertDialog.Builder(BooksActivity.this);
+                alert.setMessage(R.string.alertDialogMessageFav).setCancelable(false)
+                        .setPositiveButton(R.string.positiveButtonAlertDialog, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                BookInfo book = bookList.get(position);
+                                String name = book.getName().toString();
+                                bookListfav.add(book);
+                                toastMessage(name + " added to Library"); //toast delete message (Not working with R.strings!)
+                            }
+                        })
+                        .setNegativeButton(R.string.negativeButtonAlertDialog, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        });
+                alert.show();
+                return true;
+            }
+        });
+
+
     }
+
 
     //Set the list according to the category
     public void setContent(String data) {
         switch (data) {
             case "action":
-                bookList = MyInfoManager.getInstance().getAllBooks("action");
-                /*convertToBitmap(R.drawable.actionbook1);
+                //bookList = MyInfoManager.getInstance().getAllBooks("action");
+                //convertToBitmap(R.drawable.actionbook1);
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook1), "Breaker", "this is book1"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook2), "The Eye Of Minds", "this is book2"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook3), "Loose Ends", "this is book3"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook4), "Hunger Games", "this is book4"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook5), "In The Blood", "this is book5"));
-                Log.d("TAG","inserted action books to array");*/
-                int selectedBook=bookListView.getCheckedItemPosition();
-                getItem(bookList,bookListfav,selectedBook);
+                Log.d("TAG","inserted action books to array");
 
                 break;
 
@@ -134,17 +164,13 @@ public class BooksActivity extends AppCompatActivity {
         return bitmap;
     }
 
-
-    public void getItem(List<BookInfo> bookList,List<BookInfo> bookListfav,int position)
-    {
-        BookInfo fb= bookList.get(position);
-
-        bookListfav.add(fb);
+    public List<BookInfo> getBookListfav() {
+        return bookListfav;
     }
 
-    public List<BookInfo> getBookListfav()
-    {
-        return bookListfav;
+    //create customizable toast
+    public void toastMessage(String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }
