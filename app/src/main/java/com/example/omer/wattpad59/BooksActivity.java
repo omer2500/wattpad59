@@ -34,7 +34,6 @@ public class BooksActivity extends AppCompatActivity {
     Integer position;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
