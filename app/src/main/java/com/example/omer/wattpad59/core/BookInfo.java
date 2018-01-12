@@ -23,7 +23,6 @@ public class BookInfo {
     Bitmap image;
     String content;
     String wattpadId;
-    private static boolean favoriteFlag;
 
     //Constructor
     public BookInfo(String id, String name, String description, Bitmap image, String content) {
@@ -38,10 +37,6 @@ public class BookInfo {
         this.image = image;
         this.name = name;
         this.description = description;
-    }
-
-    public void setFavoriteFlag(Boolean flag){
-        favoriteFlag=flag;
     }
 
     //Getters and Setters
