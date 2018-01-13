@@ -34,7 +34,6 @@ public class LibraryActivity extends AppCompatActivity {
         setTitle(R.string.library); //set toolbar title
         bookListView = (ListView)findViewById(R.id.listView3);
 
-
         //Init adapter
         adapter = new customAdapter2(getApplicationContext(), bookListfav);
         bookListView.setAdapter(adapter);

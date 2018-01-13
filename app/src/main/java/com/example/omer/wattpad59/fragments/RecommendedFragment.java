@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.omer.wattpad59.R;
+import com.example.omer.wattpad59.adapters.customAdapter2;
 import com.example.omer.wattpad59.core.BookInfo;
 
 import java.util.ArrayList;
@@ -52,7 +53,8 @@ public class RecommendedFragment extends Fragment {
         );
 
         //setting the adapter
-        listView.setAdapter(ListViewAdapter);
+        customAdapter2 adapter=new customAdapter2(this.getActivity(),recommandedBooks);
+        listView.setAdapter(adapter);
 
         return view;
     }
