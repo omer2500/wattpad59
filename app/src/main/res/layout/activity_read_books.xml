@@ -22,6 +22,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <Button
+                android:id="@+id/editBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="260dp"
+                android:text="Edit &#9997;"
+                android:textSize="15dp"
+                android:background="@color/colorAccent"
+                android:textColor="@color/colorWhite"/>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

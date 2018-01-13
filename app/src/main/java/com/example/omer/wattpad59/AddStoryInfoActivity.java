@@ -119,7 +119,7 @@ public class AddStoryInfoActivity extends FragmentActivity {
             @Override
             public void onClick(View view) {
                 String id = storyId.getText().toString();
-                String title = storyTitle.getText().toString();
+                String name = storyTitle.getText().toString();
                 String description = storyDescription.getText().toString();
                 Bitmap image;
                 if(imageView.getDrawable() != null){
@@ -129,7 +129,7 @@ public class AddStoryInfoActivity extends FragmentActivity {
                 }
                 String content = storyContent.getText().toString();
                 if(storyId.length() != 0 && storyTitle.length() !=0 && storyDescription.length() !=0 && storyContent.length() !=0){
-                    addData(id, title, description, image, content);
+                    addData(id, name, description, image, content);
                     //Reset all input fields
                     storyId.setText("");
                     storyTitle.setText("");
@@ -165,7 +165,7 @@ public class AddStoryInfoActivity extends FragmentActivity {
         }
     }
 
-    //create a new book and insert in into the DB
+    //create a new book and insert in into the SQLite DB and the external DB
     public void addData(String id, String title, String description, Bitmap image, String content){
         BookInfo book = new BookInfo(id, title, description, image, content);
         MyInfoManager.getInstance().addNewBook(book);

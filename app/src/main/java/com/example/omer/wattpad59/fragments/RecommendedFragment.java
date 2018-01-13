@@ -48,7 +48,7 @@ public class RecommendedFragment extends Fragment {
         //making array strings show in listView
         ArrayAdapter<BookInfo> ListViewAdapter=new ArrayAdapter<>(
                 getActivity(),
-                android.R.layout.simple_list_item_1,
+                R.layout.custom_listview,
                 recommandedBooks
         );
 

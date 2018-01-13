@@ -2,6 +2,8 @@ package com.example.omer.wattpad59.core;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,7 +17,7 @@ import java.util.List;
  * Created by Yarden-PC on 11-Dec-17.
  */
 
-public class BookInfo {
+public class BookInfo implements Parcelable {
 
     String id;
     String name;
@@ -47,6 +49,27 @@ public class BookInfo {
 
     public BookInfo(){
     }
+
+    protected BookInfo(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        description = in.readString();
+        image = in.readParcelable(Bitmap.class.getClassLoader());
+        content = in.readString();
+        wattpadId = in.readString();
+    }
+
+    public static final Creator<BookInfo> CREATOR = new Creator<BookInfo>() {
+        @Override
+        public BookInfo createFromParcel(Parcel in) {
+            return new BookInfo(in);
+        }
+
+        @Override
+        public BookInfo[] newArray(int size) {
+            return new BookInfo[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -144,5 +167,20 @@ public class BookInfo {
         }
 
         return books;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeParcelable(image, flags);
+        dest.writeString(content);
+        dest.writeString(wattpadId);
     }
 }

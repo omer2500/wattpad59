@@ -3,6 +3,8 @@ package com.example.omer.wattpad59;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -50,7 +52,7 @@ public class MyBooks_Activity extends AppCompatActivity {
         mListView.setAdapter(adapter);
 
         //delete a book with alertDialog when long-clicking on listView item
-        /*mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        mListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 position = i;
@@ -62,7 +64,13 @@ public class MyBooks_Activity extends AppCompatActivity {
                                 BookInfo book = bookList.get(position);
                                 String id = book.getId().toString();
                                 String name = book.getName().toString();
-                                delete(id);
+                                String description = book.getDescription().toString();
+                                String content = book.getContent().toString();
+                                Bitmap image = null;
+                                if(book.getImage() != null){
+                                    image = book.getImage();
+                                }
+                                delete(id, name, description, image, content);
                                 //Update the adapter to show list after item was deleted
                                 bookList= MyInfoManager.getInstance().getAllBooks();
                                 adapter = new customAdapter2(MyBooks_Activity.this, bookList);
@@ -79,7 +87,7 @@ public class MyBooks_Activity extends AppCompatActivity {
                 alert.show();
                 return true;
             }
-        });*/
+        });
 
         //Set reading the book content when clicking on item
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -88,8 +96,14 @@ public class MyBooks_Activity extends AppCompatActivity {
                 Intent intent = new Intent(MyBooks_Activity.this, ReadBooksActivity.class);
                 String content = bookList.get(i).getContent().toString();
                 String name = bookList.get(i).getName().toString();
+                String id = bookList.get(i).getId().toString();
+                String description = bookList.get(i).getDescription().toString();
+                byte[] image = bookList.get(i).getImgAsByteArray(bookList.get(i).getImage());
                 intent.putExtra("content", content);
                 intent.putExtra("name", name);
+                intent.putExtra("id", id);
+                intent.putExtra("description", description);
+                intent.putExtra("image", image);
                 startActivity(intent);
             }
         });
@@ -137,6 +151,12 @@ public class MyBooks_Activity extends AppCompatActivity {
     /*public void delete(String id){
         MyInfoManager.getInstance().deleteBook(id);
     }*/
+
+    //delete a book from the SQLite DB and the external DB
+    public void delete(String id, String title, String description, Bitmap image, String content){
+        BookInfo book = new BookInfo(id, title, description, image, content);
+        MyInfoManager.getInstance().deleteBook(book);
+    }
 
     //create customizable toast
     public void toastMessage(String message){
