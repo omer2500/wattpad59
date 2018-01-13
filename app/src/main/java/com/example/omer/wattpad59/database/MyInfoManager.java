@@ -14,6 +14,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.security.AccessController.getContext;
+
 /**
  * Created by Yarden-PC on 11-Dec-17.
  * This is the singleton
@@ -22,7 +24,7 @@ import java.util.List;
 public class MyInfoManager implements NetworkResListener {
 
     private static MyInfoManager instance=null;
-    private Context context;
+    Context context;
     private DatabaseHelper databaseHelper;
 
     private BookInfo editBook;

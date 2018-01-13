@@ -32,6 +32,7 @@ public class ReadBooksActivity extends AppCompatActivity {
     Uri imageUri;
     ImageView image;
     EditText name, description, content;
+    AlertDialog dialog;
 
 
     @Override
@@ -95,7 +96,7 @@ public class ReadBooksActivity extends AppCompatActivity {
                         if(name.length() !=0 && description.length() !=0 && content.length() !=0){
                             updateBook(bookId, newName, newDescription, newImage, newContent);
                             toastMessage("Updated Successfully!");
-
+                            dialog.cancel();
                         }else{
                             toastMessage("You must fill everything");
                         }
@@ -104,8 +105,9 @@ public class ReadBooksActivity extends AppCompatActivity {
                 });
 
                 mBuilder.setView(mView);
-                AlertDialog dialog  = mBuilder.create();
+                dialog  = mBuilder.create();
                 dialog.show();
+
 
             }
         });

@@ -20,7 +20,7 @@ import wattpad.backend.objects.WattpadInfo;
 
 public class BooksResProvider {
 
-    private static final String update_sql = "UPDATE books SET name=?, description=?, content=?, image=? WHERE book_id=?;";
+    private static final String update_sql = "UPDATE books SET name=?, description=?, content=?, image=?, wattpad_id=? WHERE book_id=?;";
 
     private static final String select_sql = "SELECT * FROM  books WHERE book_id=?;";
 
@@ -326,27 +326,25 @@ public class BooksResProvider {
                 if (rs1.next()) {
                     // its execute update
                     ps = (PreparedStatement) conn.prepareStatement(update_sql);
-
-                    ps.setString(1, book_id);
-                    ps.setString(2, name);
-                    ps.setString(3, description);
-                    ps.setString(4, content);
+                    //UPDATE books SET name=?, description=?, content=?, image=?, wattpad_id=? WHERE book_id=?;
+                    ps.setString(1, name);
+                    ps.setString(2, description);
+                    ps.setString(3, content);
 
                     if (imageBytes != null) {
                         InputStream is = new ByteArrayInputStream(imageBytes);
-                        ps.setBlob(5, is);
+                        ps.setBlob(4, is);
 
                     } else {
 
-                        ps.setNull(5, Types.BLOB);
+                        ps.setNull(4, Types.BLOB);
                     }
 
 
-
-
-
                     // where
-                    ps.setString(6, wattpad_id);
+                    ps.setString(5, wattpad_id);
+
+                    ps.setString(6, book_id);
 
                     ps.execute();
 
