@@ -84,12 +84,10 @@ public class BooksActivity extends AppCompatActivity {
     }
 
 
-    //Set the list according to the category
+    //Set the list according to the chosen category
     public void setContent(String data) {
         switch (data) {
             case "action":
-                //bookList = MyInfoManager.getInstance().getAllBooks("action");
-                //convertToBitmap(R.drawable.actionbook1);
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook1), "Breaker", "this is book1"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook2), "The Eye Of Minds", "this is book2"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook3), "Loose Ends", "this is book3"));
@@ -155,7 +153,7 @@ public class BooksActivity extends AppCompatActivity {
         }
     }
 
-    //converting drawble toBitmap
+    //converting drawable toBitmap
     private Bitmap convertToBitmap(int image){
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources() , image);

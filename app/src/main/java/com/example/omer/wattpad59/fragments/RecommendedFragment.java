@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import com.example.omer.wattpad59.R;
 import com.example.omer.wattpad59.adapters.customAdapter2;
 import com.example.omer.wattpad59.core.BookInfo;
