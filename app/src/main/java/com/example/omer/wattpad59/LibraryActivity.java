@@ -30,7 +30,6 @@ public class LibraryActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
-//        bookListfav=new ArrayList<>();
         setTitle(R.string.library); //set toolbar title
         bookListView = (ListView)findViewById(R.id.listView3);
 
