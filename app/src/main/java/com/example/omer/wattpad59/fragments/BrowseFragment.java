@@ -1,6 +1,7 @@
 package com.example.omer.wattpad59.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,12 +14,18 @@ import android.widget.ListView;
 
 import com.example.omer.wattpad59.BooksActivity;
 import com.example.omer.wattpad59.R;
+import com.example.omer.wattpad59.interfaces.CallBackListener;
+import com.example.omer.wattpad59.network.utils.NetworkConnector;
+import com.example.omer.wattpad59.network.utils.NetworkResListener;
+import com.example.omer.wattpad59.network.utils.ResStatus;
+
+import org.json.JSONObject;
 
 /**
  * Created by omer on 26/11/2017.
  */
 
-public class BrowseFragment extends Fragment {
+public class BrowseFragment extends Fragment implements CallBackListener, NetworkResListener {
 
     @Nullable
     @Override
@@ -30,6 +37,8 @@ public class BrowseFragment extends Fragment {
 
         //attach the listView to the view on xml
         ListView listView = (ListView) view.findViewById(R.id.CategoriesMenu);
+
+        NetworkConnector.getInstance().updatePostsFeed(this);
 
         //making array strings show in listView
         ArrayAdapter<String> ListViewAdapter=new ArrayAdapter<String>(
@@ -89,5 +98,30 @@ public class BrowseFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onSaveButtonClicked() {
+
+    }
+
+    @Override
+    public void onPreUpdate() {
+
+    }
+
+    @Override
+    public void onBookUpdate(byte[] res, ResStatus status) {
+
+    }
+
+    @Override
+    public void onBookUpdate(JSONObject res, ResStatus status) {
+
+    }
+
+    @Override
+    public void onBookUpdate(Bitmap res, ResStatus status) {
+
     }
 }

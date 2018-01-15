@@ -88,11 +88,13 @@ public class MyInfoManager implements NetworkResListener {
             }
         }
     }
-    /*public List<BookInfo> getAllBooksByCategory(String category) {
+    public List<BookInfo> getAllBooksByCategory(String category) {
         List<BookInfo> list = new ArrayList<BookInfo>();
-        NetworkConnector.getInstance().sendRequestToServer(NetworkConnector.GET_ALL_BOOKS_JSON_REQ, instance);
+        if(databaseHelper!=null) {
+            list = databaseHelper.getAllBooksByCategory(category);
+        }
         return list;
-    }*/
+    }
 
 
     public List<BookInfo> getAllBooks(){

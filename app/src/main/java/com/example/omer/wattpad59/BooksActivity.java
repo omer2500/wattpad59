@@ -88,6 +88,12 @@ public class BooksActivity extends AppCompatActivity {
     public void setContent(String data) {
         switch (data) {
             case "action":
+                bookList = MyInfoManager.getInstance().getAllBooksByCategory("action");
+                //Init adapter
+                adapter = new customAdapter2(getApplicationContext(), bookList);
+                bookListView.setAdapter(adapter);
+
+
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook1), "Breaker", "this is book1"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook2), "The Eye Of Minds", "this is book2"));
                 bookList.add(new BookInfo(convertToBitmap(R.drawable.actionbook3), "Loose Ends", "this is book3"));

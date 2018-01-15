@@ -199,6 +199,38 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return results;
     }
 
+
+    public List<BookInfo> getAllBooksByCategory(String category){
+        List<BookInfo> results = new ArrayList<BookInfo>();
+        Cursor cursor = null;
+        try{
+            String whereArgs[] = {category};
+            cursor = db.query(BOOKS_TABLE_NAME, BOOKS_COLUMNS, BOOKS_COLUMN_6__WATTPAD_ID+"=?",whereArgs, null,null,null);
+            if(cursor!=null && cursor.getCount()>0) {
+                cursor.moveToFirst();
+                while (!cursor.isAfterLast()) {
+                    BookInfo book = new BookInfo();
+                    book.setId(cursor.getString(0));
+                    book.setName(cursor.getString(1));
+                    book.setDescription(cursor.getString(2));
+                    book.setImg(cursor.getBlob(3));
+                    book.setContent(cursor.getString(4));
+                    book.setWattpadId(cursor.getString(5));
+                    results.add(book);
+                    cursor.moveToNext();
+                }
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+        } finally {
+            if(cursor!=null){
+                cursor.close();
+            }
+        }
+
+        return results;
+    }
+
     //Get all the books in the DB as a list
     public List<BookInfo> getAllBooks(){
         List<BookInfo> result = new ArrayList<BookInfo>();
