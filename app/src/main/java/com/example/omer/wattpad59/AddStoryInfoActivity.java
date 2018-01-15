@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +60,7 @@ public class AddStoryInfoActivity extends FragmentActivity {
         storyTitle = (EditText) findViewById(R.id.storyTitle);
         storyDescription = (EditText) findViewById(R.id.storyDescription);
         storyContent = (EditText) findViewById(R.id.storyContent);
+        wattpad=(Spinner)findViewById(R.id.wattpadId);
         imageView = (ImageView)findViewById(R.id.addCoverImageView) ;
         textView = (TextView)findViewById(R.id.addCoverTextView) ;
         publishButton = (Button) findViewById(R.id.publishButton);

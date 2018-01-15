@@ -27,12 +27,13 @@ public class BookInfo implements Parcelable {
     String wattpadId;
 
     //Constructor
-    public BookInfo(String id, String name, String description, Bitmap image, String content) {
+    public BookInfo(String id, String name, String description, Bitmap image, String content,String wattpadId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.content = content;
+        this.wattpadId=wattpadId;
     }
 
     public BookInfo(Bitmap image, String name, String description){

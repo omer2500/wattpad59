@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="461dp"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="15dp">
 
         <RelativeLayout
             android:layout_width="360dp"
@@ -49,52 +49,43 @@
                 android:layout_alignBottom="@+id/addCoverImageView"
                 android:layout_alignStart="@+id/addCoverTextView"
                 android:text="Maximum image size 200KB"
-                android:textSize="10dp" />
+                android:textSize="15dp" />
 
         </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Story ID"
-            android:paddingTop="15dp" />
 
         <EditText
             android:id="@+id/storyId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Story Title"
-            android:paddingTop="10dp" />
+            android:hint="StoryId" />
+
+        <Spinner
+            android:id="@+id/wattpadId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/storyTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Story Description" />
+            android:layout_marginBottom="10dp"
+            android:hint="Story Title" />
 
         <EditText
             android:id="@+id/storyDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="10dp"
+            android:hint="Story Decription" />
 
         <EditText
             android:id="@+id/storyContent"
             android:layout_width="365dp"
             android:layout_height="60dp"
             android:ems="10"
-            android:inputType="textMultiLine"
             android:hint="Enter your story..."
-            android:textSize="14dp" />
+            android:inputType="textMultiLine"
+            android:textSize="15dp" />
 
         <Button
             android:id="@+id/publishButton"
