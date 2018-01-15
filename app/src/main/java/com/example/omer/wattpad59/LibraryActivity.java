@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -74,7 +76,27 @@ public class LibraryActivity extends AppCompatActivity {
                 return false;
             }
         });
-        //***************************BOTTOM NAVIGATION BAR*****************************************************
+
+        //Set reading the book content when clicking on item
+        bookListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(LibraryActivity.this, ReadBooksActivity.class);
+                String content = bookListfav.get(i).getContent().toString();
+                String name = bookListfav.get(i).getName().toString();
+                String id = bookListfav.get(i).getId().toString();
+                String description = bookListfav.get(i).getDescription().toString();
+                byte[] image = bookListfav.get(i).getImgAsByteArray(bookListfav.get(i).getImage());
+                String wattpadId = bookListfav.get(i).getWattpadId().toString();
+                intent.putExtra("content", content);
+                intent.putExtra("name", name);
+                intent.putExtra("id", id);
+                intent.putExtra("description", description);
+                intent.putExtra("image", image);
+                intent.putExtra("wattpadId", wattpadId);
+                startActivity(intent);
+            }
+        });
 
     }
 

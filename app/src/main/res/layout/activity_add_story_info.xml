@@ -15,7 +15,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="461dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="15dp">
 
@@ -57,7 +57,16 @@
             android:id="@+id/storyId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="StoryId" />
+            android:hint="StoryId"
+            android:layout_marginTop="5dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Category:"
+            android:textSize="18dp"
+            android:layout_marginTop="15dp"
+            android:id="@+id/categoryTextView"/>
 
         <Spinner
             android:id="@+id/wattpadId"

@@ -17,85 +17,56 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/editBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="260dp"
-                android:text="Edit &#9997;"
-                android:textSize="15dp"
-                android:background="@color/colorAccent"
-                android:textColor="@color/colorWhite"/>
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/readBookTextView"
-                android:textSize="16sp"
-                android:text="PART I
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-I PULLED THE TOP LAYERS of my dress a little tighter over my shoulders. Carter was quiet now, and his silence sent deeper chills through my body than the lack of heat in the palace cells did. It had been horrific to hear his grunts of pain as the guards beat the hope out of him, but at least then I knew he was breathing.
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/categoryTitle"
+                    android:textSize="20sp"
+                    android:text="Category:  "
+                    android:textColor="@color/colorPink"
+                    android:textStyle="bold"/>
 
-I shivered as I drew my knees closer to my chest. Another tear slid down my cheek, and I was grateful for it if only because it was warm on my skin. We knew. We knew it could end this way. And still we met. How could we have stopped?
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/readBookCategory"
+                    android:textSize="20sp"
+                    android:text=""
+                    android:textColor="@color/colorPink"/>
 
-I wondered how we would die. A noose? A bullet? Something much more elaborate and painful?
+                <Button
+                    android:id="@+id/editBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="130dp"
+                    android:text="Edit &#9997;"
+                    android:textSize="15dp"
+                    android:background="@color/colorAccent"
+                    android:textColor="@color/colorWhite"/>
 
-I couldn’t help wishing that Carter’s silence meant he was already gone. Or if not, that he would go first. I’d rather have my last memory be of his death than suffer knowing that his last memory was of mine. Even now, alone in this cell, all I wanted was for his pain to stop.
+            </LinearLayout>
 
-Something stirred in the hallway, and my heart started racing. Was this it? Was this the end? I shut my eyes quickly, trying to hold back my tears. How had this happened? How had I gone from being one of the beloved members of the Selection to being labeled a traitor, awaiting my punishment? Oh, Carter . . . Carter, what have we done?
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/readBookTextView"
+            android:textSize="16sp"
+            android:text=""
+            android:layout_marginTop="40dp"/>
 
-I didn’t think I was a vain person. Still, nearly every day after breakfast, I felt like I had to go back to my room and touch up my makeup before heading to the Women’s Room. I knew it was silly—Maxon wouldn’t even see me again until the evening. And at that point, of course, I’d reapply all my makeup and change my outfit anyway.
+    </LinearLayout>
 
-Not that anything I was doing seemed to be having much of an effect. Maxon was polite and friendly, but I didn’t think I had a connection with him the way some of the other girls did. Was there something wrong with me?
-
-While I was certainly having a wonderful time in the palace, I kept feeling like there was something the other girls—well, some of them at least—understood that I didn’t. Before being Selected, I had thought that I was funny and pretty and smart. But now that I was in the middle of a bunch of other girls whose daily mission was to impress one particular boy, I felt dim and dull and less. I realized I should have paid much more attention to my friends back home who had always seemed to be in a rush when it came to finding a husband and settling down. They had spent their time talking about clothes, and makeup, and boys—while I had paid more mind to my tutors’ lectures. I felt like I had missed some important lesson, and now I was woefully behind.
-
-No. I merely needed to keep trying, that was all. I’d memorized everything from Silvia’s history lesson earlier this week. I’d even written some of it down to keep handy if I forgot something. I wanted Maxon to think that I was smart and well-rounded. I also wanted him to think I was beautiful, so it felt like these trips to my room were necessary.
-
-Did Queen Amberly do this? She seemed effortlessly stunning all the time.
-
-I paused on the stairs to look at my shoe. One of the heels seemed to be snagging on the carpet. I didn’t see anything, so I moved on, eager to get to the Women’s Room.
-
-I flicked my hair over my shoulder as I approached the first floor and went back to focusing on whether there was more that I was supposed to be doing. I really wanted to win. I hadn’t spent much time with Maxon, but he seemed kind and funny and—
-
-“Ahh!” My heel snagged on the edge of the stair, and I fell with a smack onto the marble floor. “Ow,” I muttered.
-
-“Miss!” I looked up to see a guard running toward me. “Are you all right?”
-
-“I’m fine. Nothing injured but my pride,” I said, blushing.
-
-“I don’t know how ladies walk in those shoes. It’s a miracle the whole lot of you don’t have broken ankles all the time.”
-
-I giggled as he offered me his hand.
-
-“Thank you.” I started brushing my hair back and smoothing out my dress.
-
-“Any time. You’re sure you aren’t hurt?” He looked me over anxiously, searching for scrapes or cuts.
-
-“My hip hurts a little where I fell, but otherwise I feel perfect.” Which was true.
-
-“Maybe we should take you to the hospital wing, just to be safe.”
-
-“No, really,” I insisted. “I’m fine.”
-
-He sighed. “Would you do me a favor and go anyway? If you were hurt and I didn’t do something to help, I’d feel awful about it.” His blue eyes were terribly convincing. “And I’d be willing to bet the prince would want you to go.”
-
-He made a fair point. “All right,” I ceded. “I’ll go.”
-
-He grinned, his smile ever so slightly crooked. “Okay then.” He scooped me up, and I gasped in shock.
-
-“I don’t think I need this,” I protested.
-
-“All the same.” He started walking, so I couldn’t get down. “Now, correct me if I’m wrong, but you’re Miss Marlee, right?”
-
-“Yes, I am.”"/>
-
-        </LinearLayout>
 
     </ScrollView>
 </RelativeLayout>

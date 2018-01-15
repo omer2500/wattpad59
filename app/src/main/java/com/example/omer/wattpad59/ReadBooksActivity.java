@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ReadBooksActivity extends AppCompatActivity {
 
-    TextView textView, etImageTxt;
+    TextView textView, category, etImageTxt;
     String bookContent, bookName, bookId, bookDescription, wattpadId;
     byte[] BAbookImage;
     Bitmap bookImage;
@@ -41,6 +41,7 @@ public class ReadBooksActivity extends AppCompatActivity {
         setContentView(R.layout.activity_read_books);
 
         textView = (TextView) findViewById(R.id.readBookTextView);
+        category = (TextView) findViewById(R.id.readBookCategory);
         bookContent = getIntent().getStringExtra("content");  //Get the book content that was transferred
         bookName = getIntent().getStringExtra("name");  //Get the book name that was transferred
         bookId = getIntent().getStringExtra("id");  //Get the book id that was transferred
@@ -50,6 +51,7 @@ public class ReadBooksActivity extends AppCompatActivity {
         bookImage = BitmapFactory.decodeByteArray(BAbookImage, 0, BAbookImage.length);
 
         textView.setText(bookContent); //Show the book content
+        category.setText(wattpadId);  //Show the book category
         setTitle(bookName);
         editBtn = (Button)findViewById(R.id.editBtn);
 
