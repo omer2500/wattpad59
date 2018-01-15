@@ -1,5 +1,6 @@
 package com.example.omer.wattpad59;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -41,11 +44,13 @@ import java.util.Map;
  * Created by Yarden-PC on 27-Nov-17.
  */
 
-public class AddStoryInfoActivity extends FragmentActivity {
+public class AddStoryInfoActivity extends Activity implements On {
 
     private EditText storyId, storyTitle, storyDescription, storyContent;
     private Button publishButton;
     private ImageView imageView;
+    private Spinner wattpadId;
+
     TextView textView;
     private static final int PICK_IMAGE = 100;
     Uri imageUri;
@@ -60,7 +65,15 @@ public class AddStoryInfoActivity extends FragmentActivity {
         storyTitle = (EditText) findViewById(R.id.storyTitle);
         storyDescription = (EditText) findViewById(R.id.storyDescription);
         storyContent = (EditText) findViewById(R.id.storyContent);
-        wattpad=(Spinner)findViewById(R.id.wattpadId);
+        wattpadId=(Spinner)findViewById(R.id.wattpadId);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.cat_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        wattpadId.setAdapter(adapter);
+
         imageView = (ImageView)findViewById(R.id.addCoverImageView) ;
         textView = (TextView)findViewById(R.id.addCoverTextView) ;
         publishButton = (Button) findViewById(R.id.publishButton);
