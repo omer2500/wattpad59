@@ -95,7 +95,7 @@ public class MyBooks_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MyBooks_Activity.this, ReadBooksActivity.class);
-                String content = bookList.get(i).getContent().toString();
+                String content = bookList.get(i).getContent();
                 String name = bookList.get(i).getName().toString();
                 String id = bookList.get(i).getId().toString();
                 String description = bookList.get(i).getDescription().toString();
