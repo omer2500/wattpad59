@@ -67,7 +67,7 @@ public class BooksResProvider {
 
                 String wattpadID = rs.getString(6);
                 BookInfo bookInfo = new BookInfo(bookId, bookName, bookDescription, image,
-                        bookContent);
+                        bookContent, wattpadID);
 
                 results.add(bookInfo);
 
@@ -132,7 +132,7 @@ public class BooksResProvider {
 
                 String wattpadID = rs.getString(6);
                 BookInfo bookInfo = new BookInfo(bookId, bookName, bookDescription, image,
-                        bookContent);
+                        bookContent, wattpadID);
 
                 results.add(bookInfo);
 
@@ -206,7 +206,7 @@ public class BooksResProvider {
 
                 String wattpadID = rs.getString(6);
                 BookInfo bookInfo = new BookInfo(bookId, bookName, bookDescription, image,
-                        bookContent);
+                        bookContent, wattpadID);
 
                 results.add(bookInfo);
 

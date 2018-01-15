@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,33 +22,22 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.omer.wattpad59.core.BookInfo;
 import com.example.omer.wattpad59.database.MyInfoManager;
-import com.example.omer.wattpad59.network.utils.VolleyMultipartRequest;
 
-import org.json.JSONObject;
-
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
  * Created by Yarden-PC on 27-Nov-17.
  */
 
-public class AddStoryInfoActivity extends Activity implements On {
+public class AddStoryInfoActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
     private EditText storyId, storyTitle, storyDescription, storyContent;
     private Button publishButton;
     private ImageView imageView;
-    private Spinner wattpadId;
+    private Spinner wattpadIdSpinner;
+    String category;
 
     TextView textView;
     private static final int PICK_IMAGE = 100;
@@ -65,18 +53,19 @@ public class AddStoryInfoActivity extends Activity implements On {
         storyTitle = (EditText) findViewById(R.id.storyTitle);
         storyDescription = (EditText) findViewById(R.id.storyDescription);
         storyContent = (EditText) findViewById(R.id.storyContent);
-        wattpadId=(Spinner)findViewById(R.id.wattpadId);
-// Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.cat_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-        wattpadId.setAdapter(adapter);
-
+        wattpadIdSpinner =(Spinner)findViewById(R.id.wattpadId);
         imageView = (ImageView)findViewById(R.id.addCoverImageView) ;
         textView = (TextView)findViewById(R.id.addCoverTextView) ;
         publishButton = (Button) findViewById(R.id.publishButton);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.cat_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        wattpadIdSpinner.setAdapter(adapter);
+        wattpadIdSpinner.setOnItemSelectedListener(this);
 
         MyInfoManager.getInstance().openDatabase(this);
 
@@ -129,7 +118,8 @@ public class AddStoryInfoActivity extends Activity implements On {
         });
 
 
-        //save the data inserted when clicking on the publish button
+
+    //save the data inserted when clicking on the publish button
         publishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -143,8 +133,9 @@ public class AddStoryInfoActivity extends Activity implements On {
                     image = null;
                 }
                 String content = storyContent.getText().toString();
+                String wattpadId = category;
                 if(storyId.length() != 0 && storyTitle.length() !=0 && storyDescription.length() !=0 && storyContent.length() !=0){
-                    addData(id, name, description, image, content);
+                    addData(id, name, description, image, content, wattpadId);
                     //Reset all input fields
                     storyId.setText("");
                     storyTitle.setText("");
@@ -162,6 +153,10 @@ public class AddStoryInfoActivity extends Activity implements On {
                 }
             }
         });
+
+
+
+
     }
 
     //add a cover image from the gallery/camera
@@ -181,14 +176,26 @@ public class AddStoryInfoActivity extends Activity implements On {
     }
 
     //create a new book and insert in into the SQLite DB and the external DB
-    public void addData(String id, String title, String description, Bitmap image, String content){
-        BookInfo book = new BookInfo(id, title, description, image, content);
+    public void addData(String id, String title, String description, Bitmap image, String content, String wattpad_id){
+        BookInfo book = new BookInfo(id, title, description, image, content, wattpad_id);
         MyInfoManager.getInstance().addNewBook(book);
     }
 
     //create customizable toast
     public void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+
+    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+        //An item was selected. You can retrieve the selected item using
+        category = (String)parent.getItemAtPosition(pos);
+        Log.d("choose a category:", category);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        category="war";
     }
 
 }

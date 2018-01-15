@@ -19,12 +19,13 @@ public class BookInfo {
     String wattpadId;
 
     //Constructors
-    public BookInfo(String id, String name, String description, byte[] image, String content) {
+    public BookInfo(String id, String name, String description, byte[] image, String content, String wattpadId) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.image = image;
         this.content = content;
+        this.wattpadId = wattpadId;
     }
 
 

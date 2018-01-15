@@ -62,7 +62,11 @@
         <Spinner
             android:id="@+id/wattpadId"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="45dp"
+            android:hint="@string/category"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"/>
 
         <EditText
             android:id="@+id/storyTitle"

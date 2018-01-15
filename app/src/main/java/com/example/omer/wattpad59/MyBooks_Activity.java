@@ -70,7 +70,8 @@ public class MyBooks_Activity extends AppCompatActivity {
                                 if(book.getImage() != null){
                                     image = book.getImage();
                                 }
-                                delete(id, name, description, image, content);
+                                String wattpadId = book.getWattpadId().toString();
+                                delete(id, name, description, image, content, wattpadId);
                                 //Update the adapter to show list after item was deleted
                                 bookList= MyInfoManager.getInstance().getAllBooks();
                                 adapter = new customAdapter2(MyBooks_Activity.this, bookList);
@@ -99,11 +100,13 @@ public class MyBooks_Activity extends AppCompatActivity {
                 String id = bookList.get(i).getId().toString();
                 String description = bookList.get(i).getDescription().toString();
                 byte[] image = bookList.get(i).getImgAsByteArray(bookList.get(i).getImage());
+                String wattpadId = bookList.get(i).getWattpadId().toString();
                 intent.putExtra("content", content);
                 intent.putExtra("name", name);
                 intent.putExtra("id", id);
                 intent.putExtra("description", description);
                 intent.putExtra("image", image);
+                intent.putExtra("wattpadId", wattpadId);
                 startActivity(intent);
             }
         });
@@ -153,8 +156,8 @@ public class MyBooks_Activity extends AppCompatActivity {
     }*/
 
     //delete a book from the SQLite DB and the external DB
-    public void delete(String id, String title, String description, Bitmap image, String content){
-        BookInfo book = new BookInfo(id, title, description, image, content);
+    public void delete(String id, String title, String description, Bitmap image, String content, String wattpadId){
+        BookInfo book = new BookInfo(id, title, description, image, content, wattpadId);
         MyInfoManager.getInstance().deleteBook(book);
     }
 

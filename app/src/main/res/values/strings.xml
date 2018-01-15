@@ -27,6 +27,7 @@
     <string name="alertDialogMessageFav">Do you want to add this book to your library?</string>
     <string name="positiveButtonAlertDialog">Yes</string>
     <string name="negativeButtonAlertDialog">No</string>
+    <string name="category">Category</string>
     <string-array name="cat_array">
         <item>Action</item>
         <item>Fantasy</item>

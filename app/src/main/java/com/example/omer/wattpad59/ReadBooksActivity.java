@@ -24,7 +24,7 @@ import java.util.List;
 public class ReadBooksActivity extends AppCompatActivity {
 
     TextView textView, etImageTxt;
-    String bookContent, bookName, bookId, bookDescription;
+    String bookContent, bookName, bookId, bookDescription, wattpadId;
     byte[] BAbookImage;
     Bitmap bookImage;
     Button editBtn, submitBtn;
@@ -46,6 +46,7 @@ public class ReadBooksActivity extends AppCompatActivity {
         bookId = getIntent().getStringExtra("id");  //Get the book id that was transferred
         bookDescription = getIntent().getStringExtra("description");  //Get the book description that was transferred
         BAbookImage = getIntent().getByteArrayExtra("image");  //Get the book name that was transferred
+        wattpadId = getIntent().getStringExtra("wattpadId");   //Get the book category that was transferred
         bookImage = BitmapFactory.decodeByteArray(BAbookImage, 0, BAbookImage.length);
 
         textView.setText(bookContent); //Show the book content
@@ -72,8 +73,6 @@ public class ReadBooksActivity extends AppCompatActivity {
                 content.setText(bookContent);
                 image.setImageBitmap(bookImage);
 
-
-
                 //Open gallery when clicking on "Add cover"
                 etImageTxt.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -94,7 +93,7 @@ public class ReadBooksActivity extends AppCompatActivity {
                         }
                         String newContent = content.getText().toString();
                         if(name.length() !=0 && description.length() !=0 && content.length() !=0){
-                            updateBook(bookId, newName, newDescription, newImage, newContent);
+                            updateBook(bookId, newName, newDescription, newImage, newContent, wattpadId);
                             toastMessage("Updated Successfully!");
                             dialog.cancel();
                         }else{
@@ -117,8 +116,8 @@ public class ReadBooksActivity extends AppCompatActivity {
 
 
     //update book in SQLite DB and in external DB
-    public void updateBook(String id, String title, String description, Bitmap image, String content){
-        BookInfo book = new BookInfo(id, title, description, image, content);
+    public void updateBook(String id, String title, String description, Bitmap image, String content, String wattpadId){
+        BookInfo book = new BookInfo(id, title, description, image, content, wattpadId);
         MyInfoManager.getInstance().updateBook(book);
     }
 
