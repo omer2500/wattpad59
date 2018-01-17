@@ -39,10 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
         MyInfoManager.getInstance().openDatabase(this);
         NetworkConnector.getInstance().initialize(this);
-        setTitle(R.string.home); //set toolbar title
-
-        Log.d(TAG,"onCreate: String.");
-
+        //set toolbar title
+        setTitle(R.string.home);
 
 
 

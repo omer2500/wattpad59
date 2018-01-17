@@ -25,7 +25,6 @@ import android.widget.Toast;
 import com.example.omer.wattpad59.core.BookInfo;
 import com.example.omer.wattpad59.database.MyInfoManager;
 
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
  * Created by Yarden-PC on 27-Nov-17.
@@ -49,6 +48,7 @@ public class AddStoryInfoActivity extends Activity implements AdapterView.OnItem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_story_info);
 
+        //assigning xml attributes to a variable
         storyId = (EditText) findViewById(R.id.storyId);
         storyTitle = (EditText) findViewById(R.id.storyTitle);
         storyDescription = (EditText) findViewById(R.id.storyDescription);
@@ -67,6 +67,7 @@ public class AddStoryInfoActivity extends Activity implements AdapterView.OnItem
         wattpadIdSpinner.setAdapter(adapter);
         wattpadIdSpinner.setOnItemSelectedListener(this);
 
+        //open dataBase Connection
         MyInfoManager.getInstance().openDatabase(this);
 
 
@@ -79,8 +80,8 @@ public class AddStoryInfoActivity extends Activity implements AdapterView.OnItem
             }
         });
 
-        setTitle(R.string.add_story_info); //set toolbar title
-
+        //set toolbar title
+        setTitle(R.string.add_story_info);
 
         //***************************BOTTOM NAVIGATION BAR*****************************************************
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottomNavView_Bar);
@@ -175,27 +176,27 @@ public class AddStoryInfoActivity extends Activity implements AdapterView.OnItem
         }
     }
 
-    //create a new book and insert in into the SQLite DB and the external DB
+    //create a new book and insert in into the SQLite DB and the MySQL
     public void addData(String id, String title, String description, Bitmap image, String content, String wattpad_id){
         BookInfo book = new BookInfo(id, title, description, image, content, wattpad_id);
         MyInfoManager.getInstance().addNewBook(book);
     }
 
-    //create customizable toast
+    //create Toast Message
     public void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-
+    //will execute when user choose book category
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-        //An item was selected. You can retrieve the selected item using
         category = (String)parent.getItemAtPosition(pos);
         Log.d("choose a category:", category);
     }
 
+    //Deafult value for category if not selected
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-        category="war";
+        category="Action";
     }
 
 }

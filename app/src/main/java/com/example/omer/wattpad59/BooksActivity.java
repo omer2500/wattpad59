@@ -40,8 +40,6 @@ public class BooksActivity extends AppCompatActivity implements CallBackListener
     //favorite books array
     static List<BookInfo> bookListfav=new ArrayList<>();
     Integer position;
-    private ProgressBar progressBar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +52,7 @@ public class BooksActivity extends AppCompatActivity implements CallBackListener
 
         bookListView = (ListView)findViewById(R.id.listView);
 
-        //set the chosen category from Browse_fragment to  variable
+        //set the chosen category from Browse_fragment to variable
         String data=getIntent().getExtras().getString("str");
         bookList=new ArrayList<>();
 
@@ -180,20 +178,13 @@ public class BooksActivity extends AppCompatActivity implements CallBackListener
         }
     }
 
-    //converting drawable toBitmap
-    private Bitmap convertToBitmap(int image){
-
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources() , image);
-
-        return bitmap;
-    }
 
     //return the favorite books array.
     public List<BookInfo> getBookListfav() {
         return bookListfav;
     }
 
-    //create customizable toast
+    //create toast message
     public void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
@@ -205,7 +196,6 @@ public class BooksActivity extends AppCompatActivity implements CallBackListener
 
     @Override
     public void onPreUpdate() {
-        progressBar.setVisibility(View.VISIBLE);// To Show ProgressBar
     }
 
     @Override

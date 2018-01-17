@@ -40,6 +40,7 @@ public class ReadBooksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_books);
 
+        //assign variables for xml attributes
         textView = (TextView) findViewById(R.id.readBookTextView);
         category = (TextView) findViewById(R.id.readBookCategory);
         bookContent = getIntent().getStringExtra("content");  //Get the book content that was transferred
@@ -75,7 +76,7 @@ public class ReadBooksActivity extends AppCompatActivity {
                 content.setText(bookContent);
                 image.setImageBitmap(bookImage);
 
-                //Open gallery when clicking on "Add cover"
+                //Open  phone gallery when clicking on "Add cover"
                 etImageTxt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -116,7 +117,6 @@ public class ReadBooksActivity extends AppCompatActivity {
 
     }
 
-
     //update book in SQLite DB and in external DB
     public void updateBook(String id, String title, String description, Bitmap image, String content, String wattpadId){
         BookInfo book = new BookInfo(id, title, description, image, content, wattpadId);
@@ -124,7 +124,7 @@ public class ReadBooksActivity extends AppCompatActivity {
     }
 
     //add a cover image from the gallery/camera
-    private void openGallery(){ //open the gallery
+    private void openGallery(){//open the gallery
         Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
         startActivityForResult(gallery,PICK_IMAGE);
     }
@@ -139,7 +139,7 @@ public class ReadBooksActivity extends AppCompatActivity {
         }
     }
 
-    //create customizable toast
+    //create toast message
     public void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }

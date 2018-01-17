@@ -100,6 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
+    //update book
     public boolean updateBookInfo(BookInfo bookInfo){
         long result = -1;
         try {
@@ -127,6 +128,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return false;
     }
 
+    //delete book
     public boolean deleteBookInfo(BookInfo bookInfo){
 
         String[] arguments = {bookInfo.getId()};
@@ -139,6 +141,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         return false;
     }
 
+    //update book image
     public int updateBookImage(BookInfo book) {
 
         int cnt = 0;
@@ -168,6 +171,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
+    //get all user books
     public List<BookInfo> getAllMyBooks(){
         List<BookInfo> results = new ArrayList<BookInfo>();
         Cursor cursor = null;
@@ -200,6 +204,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
+    //get all books by category
     public List<BookInfo> getAllBooksByCategory(String category){
         List<BookInfo> results = new ArrayList<BookInfo>();
         Cursor cursor = null;
@@ -269,14 +274,4 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    //Delete book by given ID
-    public boolean delete(String id){
-        long result = -1;
-        result = db.delete(BOOKS_TABLE_NAME, BOOKS_COLUMN_1_ID + " = ?", new String[] {id});
-        Log.d(TAG,"Book deleted");
-        if(result > 0){
-            return true;
-        }
-        return false;
-    }
 }

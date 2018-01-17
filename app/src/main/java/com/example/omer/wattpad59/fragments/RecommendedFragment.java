@@ -24,6 +24,7 @@ import java.util.List;
 public class RecommendedFragment extends Fragment {
 
 
+    //Left untouched by morad's instructions
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstancecState){

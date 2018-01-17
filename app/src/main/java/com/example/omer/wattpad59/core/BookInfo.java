@@ -36,6 +36,7 @@ public class BookInfo implements Parcelable {
         this.wattpadId=wattpadId;
     }
 
+    //second constractor to present the books on listview
     public BookInfo(Bitmap image, String name, String description){
         this.image = image;
         this.name = name;

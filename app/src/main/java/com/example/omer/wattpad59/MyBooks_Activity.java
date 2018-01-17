@@ -39,8 +39,10 @@ public class MyBooks_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mybooks_activity);
-        setTitle(R.string.myBooks); //set toolbar title
+        //set toolbar title
+        setTitle(R.string.myBooks);
 
+        //assign variables to xml attributes
         mListView =(ListView) findViewById(R.id.listView1) ;
         bookId = (TextView) findViewById(R.id.bookName);
 
@@ -150,10 +152,6 @@ public class MyBooks_Activity extends AppCompatActivity {
         //***************************END OF BOTTOM NAVIGATION BAR***********************************************
     }
 
-    //Delete a book by calling to the deletion function in MyInfoManager and sending the book ID
-    /*public void delete(String id){
-        MyInfoManager.getInstance().deleteBook(id);
-    }*/
 
     //delete a book from the SQLite DB and the external DB
     public void delete(String id, String title, String description, Bitmap image, String content, String wattpadId){
@@ -161,7 +159,7 @@ public class MyBooks_Activity extends AppCompatActivity {
         MyInfoManager.getInstance().deleteBook(book);
     }
 
-    //create customizable toast
+    //create  toast message
     public void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
