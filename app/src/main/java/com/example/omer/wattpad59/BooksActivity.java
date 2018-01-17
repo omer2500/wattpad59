@@ -120,11 +120,12 @@ public class BooksActivity extends AppCompatActivity implements CallBackListener
     public void setContent(String data) {
         switch (data) {
             case "action":
-                bookList = MyInfoManager.getInstance().getAllBooksByCategory("Action");
                 //Init adapter
+                bookList = MyInfoManager.getInstance().getAllBooksByCategory("Action");
                 adapter = new customAdapter2(getApplicationContext(), bookList);
                 bookListView.setAdapter(adapter);
                 Log.d("TAG","inserted action books to array");
+
 
                 break;
 
@@ -205,10 +206,41 @@ public class BooksActivity extends AppCompatActivity implements CallBackListener
 
     @Override
     public void onBookUpdate(JSONObject res, ResStatus status) {
+        if (status.equals(ResStatus.SUCCESS) && res != null) {
+            MyInfoManager.getInstance().updateBooks(res);
+            //CreateResultArray("ALL");
+            adapter = new customAdapter2(getApplicationContext(), bookList);
+            bookListView.setAdapter(adapter);
+        }
     }
+
 
     @Override
     public void onBookUpdate(Bitmap res, ResStatus status) {
 
     }
+
+    public void CreateResultArray(String res){
+
+        bookList= MyInfoManager.getInstance().getAllBooks();
+        List<BookInfo> bookList2=new ArrayList<BookInfo>();
+        if (res!="All"){
+            for (BookInfo book: bookList) {
+                if (book.getWattpadId().matches(res)){
+                    bookList2.add(book);
+                }
+
+            }
+        }else{
+            for (BookInfo book: bookList) {
+                bookList2.add(book);
+            }
+        }
+
+    }
+
+
+
+
+
 }

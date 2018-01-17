@@ -270,6 +270,64 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     }
 
 
+
+    public boolean createBookWithoutImg(BookInfo book) {
+        long result = 0;
+        try {
+            result = -1;
+            // make values to be inserted
+            ContentValues values = new ContentValues();
+            values.put(BOOKS_COLUMN_1_ID, book.getId());
+            values.put(BOOKS_COLUMN_2_NAME, book.getName());
+            values.put(BOOKS_COLUMN_3_DESCRIPTION, book.getDescription());
+            //values.put(BOOKS_COLUMN_4__IMAGE, book.getImage());
+            values.put(BOOKS_COLUMN_5__CONTENT, book.getContent());
+            values.put(BOOKS_COLUMN_6__WATTPAD_ID, book.getWattpadId());
+
+
+            // insert item
+            result=db.insert(BOOKS_TABLE_NAME, null, values);
+
+
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+
+        if(result>0){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean updateBookWithoutImage(BookInfo book) {
+        long result=-1;
+
+        try {
+
+            // make values to be inserted
+            ContentValues values = new ContentValues();
+            values.put(BOOKS_COLUMN_1_ID, book.getId());
+            values.put(BOOKS_COLUMN_2_NAME, book.getName());
+            values.put(BOOKS_COLUMN_3_DESCRIPTION, book.getDescription());
+            values.put(BOOKS_COLUMN_5__CONTENT,book.getContent());
+            values.put(BOOKS_COLUMN_6__WATTPAD_ID,book.getWattpadId());
+
+
+            // update
+            result = db.update(BOOKS_TABLE_NAME, values, BOOKS_COLUMN_1_ID + " = ?",
+                    new String[] { book.getId() });
+        } catch (Throwable t) {
+            t.printStackTrace();
+        }
+        if(result>0){
+            return true;
+        }
+        return false;
+
+
+    }
+
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }

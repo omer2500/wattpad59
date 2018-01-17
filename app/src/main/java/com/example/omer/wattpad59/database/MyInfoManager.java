@@ -14,8 +14,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.security.AccessController.getContext;
-
 /**
  * Created by Yarden-PC on 11-Dec-17.
  * This is the singleton
@@ -142,6 +140,7 @@ public class MyInfoManager implements NetworkResListener {
         }
         return result;
     }
+
 
     public void setEditBook(BookInfo editBook) {
         this.editBook = editBook;
