@@ -127,9 +127,11 @@ public class AddStoryInfoActivity extends Activity implements AdapterView.OnItem
                 String id = storyId.getText().toString();
                 String name = storyTitle.getText().toString();
                 String description = storyDescription.getText().toString();
-                Bitmap image;
+                Bitmap image,photo;
                 if(imageView.getDrawable() != null){
-                    image = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                    photo=((BitmapDrawable)imageView.getDrawable()).getBitmap();
+                    image = getResizedBitmap(photo, 200);
+
                 }else{
                     image = null;
                 }
@@ -199,4 +201,27 @@ public class AddStoryInfoActivity extends Activity implements AdapterView.OnItem
         category="Action";
     }
 
+    /**
+     * reduces the size of the image
+     * @param image
+     * @param maxSize
+     * @return
+     */
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float)width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+
 }
+
+
