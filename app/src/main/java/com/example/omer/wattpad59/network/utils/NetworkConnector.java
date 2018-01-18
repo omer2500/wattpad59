@@ -294,7 +294,7 @@ public class NetworkConnector {
     }
 
 
-    public void updatePostsFeed(NetworkResListener listener){
+    public void updateBooksFeed(NetworkResListener listener){
 
         Uri.Builder builder = new Uri.Builder();
         builder.appendQueryParameter(REQ , String.valueOf(GET_ALL_BOOKS_JSON_REQ));

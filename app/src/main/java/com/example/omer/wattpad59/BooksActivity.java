@@ -4,14 +4,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.omer.wattpad59.adapters.customAdapter2;
@@ -40,7 +38,7 @@ public class BooksActivity extends AppCompatActivity implements CallBackListener
     //favorite books array
     static List<BookInfo> bookListfav=new ArrayList<>();
     Integer position;
-
+private String category;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,16 +46,16 @@ public class BooksActivity extends AppCompatActivity implements CallBackListener
 
         MyInfoManager.getInstance().openDatabase(this);
         NetworkConnector.getInstance().initialize(this);
-        NetworkConnector.getInstance().updatePostsFeed(this);
+        NetworkConnector.getInstance().updateBooksFeed(this);
 
         bookListView = (ListView)findViewById(R.id.listView);
 
         //set the chosen category from Browse_fragment to variable
-        String data=getIntent().getExtras().getString("str");
+         category=getIntent().getExtras().getString("str");
         bookList=new ArrayList<>();
 
         //inserting the books to array according to user choice from browser fragment
-        setContent(data);
+        setContent(category);
 
         //Init adapter
         adapter = new customAdapter2(getApplicationContext(), bookList);
@@ -208,9 +206,7 @@ public class BooksActivity extends AppCompatActivity implements CallBackListener
     public void onBookUpdate(JSONObject res, ResStatus status) {
         if (status.equals(ResStatus.SUCCESS) && res != null) {
             MyInfoManager.getInstance().updateBooks(res);
-            //CreateResultArray("ALL");
-            adapter = new customAdapter2(getApplicationContext(), bookList);
-            bookListView.setAdapter(adapter);
+            setContent(category);
         }
     }
 
@@ -219,26 +215,6 @@ public class BooksActivity extends AppCompatActivity implements CallBackListener
     public void onBookUpdate(Bitmap res, ResStatus status) {
 
     }
-
-    public void CreateResultArray(String res){
-
-        bookList= MyInfoManager.getInstance().getAllBooks();
-        List<BookInfo> bookList2=new ArrayList<BookInfo>();
-        if (res!="All"){
-            for (BookInfo book: bookList) {
-                if (book.getWattpadId().matches(res)){
-                    bookList2.add(book);
-                }
-
-            }
-        }else{
-            for (BookInfo book: bookList) {
-                bookList2.add(book);
-            }
-        }
-
-    }
-
 
 
 

@@ -155,7 +155,7 @@ public class BookInfo implements Parcelable {
                     book.setName(iObj.getString("name"));
                     book.setDescription(iObj.getString("description"));
                     book.setContent(iObj.getString("content"));
-                    book.setWattpadId(iObj.getString("wattpad_id"));
+                    book.setWattpadId(iObj.getString("wattpadId"));
 
                     books.add(book);
 

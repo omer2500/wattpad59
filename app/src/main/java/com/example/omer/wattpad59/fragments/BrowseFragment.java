@@ -25,7 +25,7 @@ import org.json.JSONObject;
  * Created by omer on 26/11/2017.
  */
 
-public class BrowseFragment extends Fragment implements CallBackListener, NetworkResListener {
+public class BrowseFragment extends Fragment implements CallBackListener {
 
     @Nullable
     @Override
@@ -38,7 +38,7 @@ public class BrowseFragment extends Fragment implements CallBackListener, Networ
         //attach the listView to the view on xml
         ListView listView = (ListView) view.findViewById(R.id.CategoriesMenu);
 
-        NetworkConnector.getInstance().updatePostsFeed(this);
+      //  NetworkConnector.getInstance().updateBooksFeed(this);
 
         //making array strings show in listView
         ArrayAdapter<String> ListViewAdapter=new ArrayAdapter<String>(
@@ -105,23 +105,23 @@ public class BrowseFragment extends Fragment implements CallBackListener, Networ
 
     }
 
-    @Override
-    public void onPreUpdate() {
-
-    }
-
-    @Override
-    public void onBookUpdate(byte[] res, ResStatus status) {
-
-    }
-
-    @Override
-    public void onBookUpdate(JSONObject res, ResStatus status) {
-
-    }
-
-    @Override
-    public void onBookUpdate(Bitmap res, ResStatus status) {
-
-    }
+//    @Override
+//    public void onPreUpdate() {
+//
+//    }
+//
+//    @Override
+//    public void onBookUpdate(byte[] res, ResStatus status) {
+//
+//    }
+//
+//    @Override
+//    public void onBookUpdate(JSONObject res, ResStatus status) {
+//
+//    }
+//
+//    @Override
+//    public void onBookUpdate(Bitmap res, ResStatus status) {
+//
+//    }
 }
