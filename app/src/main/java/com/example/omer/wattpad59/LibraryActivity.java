@@ -2,22 +2,18 @@ package com.example.omer.wattpad59;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.omer.wattpad59.adapters.customAdapter2;
+import com.example.omer.wattpad59.adapters.booksAdapter;
 import com.example.omer.wattpad59.core.BookInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -26,7 +22,7 @@ public class LibraryActivity extends AppCompatActivity {
     BooksActivity ba=new BooksActivity();
     public List<BookInfo> bookListfav=ba.getBookListfav();
     private ListView bookListView;
-    private customAdapter2 adapter;
+    private booksAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +32,7 @@ public class LibraryActivity extends AppCompatActivity {
         bookListView = (ListView)findViewById(R.id.listView3);
 
         //Init adapter
-        adapter = new customAdapter2(getApplicationContext(), bookListfav);
+        adapter = new booksAdapter(getApplicationContext(), bookListfav);
         bookListView.setAdapter(adapter);
 
 

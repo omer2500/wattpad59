@@ -62,20 +62,8 @@ public class MyInfoManager implements NetworkResListener {
     public void onBookUpdate(Bitmap res, ResStatus status) {
     }
 
-    public Bitmap getTakenBookPicture() {
-        return takenBookPicture;
-    }
-
-    public void setTakenBookPicture(Bitmap takenBookPicture) {
-        this.takenBookPicture = takenBookPicture;
-    }
-
     public String getMyUserId() {
         return myUserId;
-    }
-
-    public void setMyUserId(String myUserId) {
-        this.myUserId = myUserId;
     }
 
 
@@ -104,15 +92,6 @@ public class MyInfoManager implements NetworkResListener {
     }
 
 
-    public List<BookInfo> getAllMyBooks(){
-        List<BookInfo> list = new ArrayList<BookInfo>();
-        if(databaseHelper!=null) {
-            list = databaseHelper.getAllMyBooks();
-        }
-        return list;
-
-    }
-
 
     public boolean deleteBook(BookInfo book){
         boolean result = false;
@@ -137,14 +116,6 @@ public class MyInfoManager implements NetworkResListener {
     }
 
 
-    public void setEditBook(BookInfo editBook) {
-        this.editBook = editBook;
-    }
-
-    public BookInfo getEditBook() {
-        return editBook;
-    }
-
     public void updateBooks(JSONObject res) {
         if(databaseHelper==null){
             return;
@@ -159,7 +130,6 @@ public class MyInfoManager implements NetworkResListener {
 
     public void updateBookImage(BookInfo book){
         if(book.getImage()!=null) {
-            String itemId = book.getId();
             if(databaseHelper!=null){
                 databaseHelper.updateBookImage(book);
             }
@@ -179,15 +149,4 @@ public class MyInfoManager implements NetworkResListener {
             databaseHelper.close();
         }
     }
-
-    //Add new book. Calling the addNewBook function in DatabaseHelper activity
-    //public boolean addNewBook(BookInfo book){
-    //    return databaseHelper.addNewBookInfo(book);
-    //}
-
-
-    //Delete a book. Calling the delete function in DatabaseHelper activity
-    /*public boolean deleteBook(String id){
-        return databaseHelper.delete(id);
-    }*/
 }

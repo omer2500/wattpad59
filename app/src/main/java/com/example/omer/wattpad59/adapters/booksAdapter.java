@@ -21,17 +21,13 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-/**
- * Created by NgocTri on 11/15/2015.
- */
-
-public class customAdapter2 extends BaseAdapter {
+public class booksAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<BookInfo> bookList;
 
     //Constructor
-    public customAdapter2(Context mContext, List<BookInfo> bookList) {
+    public booksAdapter(Context mContext, List<BookInfo> bookList) {
         this.mContext = mContext;
         this.bookList = bookList;
     }

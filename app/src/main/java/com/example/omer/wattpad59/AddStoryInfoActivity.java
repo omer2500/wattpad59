@@ -27,7 +27,7 @@ import com.example.omer.wattpad59.database.MyInfoManager;
 
 
 /**
- * Created by Yarden-PC on 27-Nov-17.
+ * Created by Yarden on 27-Nov-17.
  */
 
 public class AddStoryInfoActivity extends Activity implements AdapterView.OnItemSelectedListener {

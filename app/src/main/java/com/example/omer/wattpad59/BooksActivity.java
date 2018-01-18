@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.omer.wattpad59.adapters.customAdapter2;
+import com.example.omer.wattpad59.adapters.booksAdapter;
 import com.example.omer.wattpad59.core.BookInfo;
 import com.example.omer.wattpad59.database.MyInfoManager;
 import com.example.omer.wattpad59.interfaces.CallBackListener;
@@ -33,7 +33,7 @@ import java.util.List;
 public class BooksActivity extends AppCompatActivity implements CallBackListener, NetworkResListener{
 
     private ListView bookListView;
-    private customAdapter2 adapter;
+    private booksAdapter adapter;
     List<BookInfo> bookList;
     //favorite books array
     static List<BookInfo> bookListfav=new ArrayList<>();
@@ -58,7 +58,7 @@ private String category;
         setContent(category);
 
         //Init adapter
-        adapter = new customAdapter2(getApplicationContext(), bookList);
+        adapter = new booksAdapter(getApplicationContext(), bookList);
         bookListView.setAdapter(adapter);
 
 
@@ -120,7 +120,7 @@ private String category;
             case "action":
                 //Init adapter
                 bookList = MyInfoManager.getInstance().getAllBooksByCategory("Action");
-                adapter = new customAdapter2(getApplicationContext(), bookList);
+                adapter = new booksAdapter(getApplicationContext(), bookList);
                 bookListView.setAdapter(adapter);
                 Log.d("TAG","inserted action books to array");
 
@@ -130,7 +130,7 @@ private String category;
             case "fantasy":
                 bookList = MyInfoManager.getInstance().getAllBooksByCategory("Fantasy");
                 //Init adapter
-                adapter = new customAdapter2(getApplicationContext(), bookList);
+                adapter = new booksAdapter(getApplicationContext(), bookList);
                 bookListView.setAdapter(adapter);
                 Log.d("TAG","inserted fantasy books to array");
                 break;
@@ -138,7 +138,7 @@ private String category;
             case "horror":
                 bookList = MyInfoManager.getInstance().getAllBooksByCategory("Horror");
                 //Init adapter
-                adapter = new customAdapter2(getApplicationContext(), bookList);
+                adapter = new booksAdapter(getApplicationContext(), bookList);
                 bookListView.setAdapter(adapter);
                 Log.d("TAG","inserted horror books to array");
                 break;
@@ -146,7 +146,7 @@ private String category;
             case "comedy":
                 bookList = MyInfoManager.getInstance().getAllBooksByCategory("Comedy");
                 //Init adapter
-                adapter = new customAdapter2(getApplicationContext(), bookList);
+                adapter = new booksAdapter(getApplicationContext(), bookList);
                 bookListView.setAdapter(adapter);
                 Log.d("TAG","inserted comedy books to array");
                 break;
@@ -154,7 +154,7 @@ private String category;
             case "kids":
                 bookList = MyInfoManager.getInstance().getAllBooksByCategory("Kids");
                 //Init adapter
-                adapter = new customAdapter2(getApplicationContext(), bookList);
+                adapter = new booksAdapter(getApplicationContext(), bookList);
                 bookListView.setAdapter(adapter);
                 Log.d("TAG","inserted kids books to array");
                 break;
@@ -162,7 +162,7 @@ private String category;
             case "romance":
                 bookList = MyInfoManager.getInstance().getAllBooksByCategory("Romance");
                 //Init adapter
-                adapter = new customAdapter2(getApplicationContext(), bookList);
+                adapter = new booksAdapter(getApplicationContext(), bookList);
                 bookListView.setAdapter(adapter);
                 Log.d("TAG","inserted romance books to array");
                 break;
@@ -170,7 +170,7 @@ private String category;
             case "war":
                 bookList = MyInfoManager.getInstance().getAllBooksByCategory("War");
                 //Init adapter
-                adapter = new customAdapter2(getApplicationContext(), bookList);
+                adapter = new booksAdapter(getApplicationContext(), bookList);
                 bookListView.setAdapter(adapter);
                 Log.d("TAG","inserted war books to array");
                 break;
@@ -209,7 +209,6 @@ private String category;
             setContent(category);
         }
     }
-
 
     @Override
     public void onBookUpdate(Bitmap res, ResStatus status) {

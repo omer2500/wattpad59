@@ -43,12 +43,6 @@ public class BookInfo implements Parcelable {
         this.description = description;
     }
 
-    //Getters and Setters
-
-    /*private String generateID(){
-        return "book_" + System.currentTimeMillis();
-    }*/
-
     public BookInfo(){
     }
 

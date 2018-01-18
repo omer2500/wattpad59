@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -17,7 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.omer.wattpad59.adapters.customAdapter2;
+import com.example.omer.wattpad59.adapters.booksAdapter;
 import com.example.omer.wattpad59.core.BookInfo;
 import com.example.omer.wattpad59.database.MyInfoManager;
 
@@ -32,7 +31,7 @@ public class MyBooks_Activity extends AppCompatActivity {
     private ListView mListView;
     private List<BookInfo> bookList;
     TextView bookId;
-    customAdapter2 adapter;
+    booksAdapter adapter;
     Integer position;
 
     @Override
@@ -50,7 +49,7 @@ public class MyBooks_Activity extends AppCompatActivity {
         bookList= MyInfoManager.getInstance().getAllBooks();
 
         //create the list adapter and set the adapter
-        adapter = new customAdapter2(this, bookList);
+        adapter = new booksAdapter(this, bookList);
         mListView.setAdapter(adapter);
 
         //delete a book with alertDialog when long-clicking on listView item
@@ -76,7 +75,7 @@ public class MyBooks_Activity extends AppCompatActivity {
                                 delete(id, name, description, image, content, wattpadId);
                                 //Update the adapter to show list after item was deleted
                                 bookList= MyInfoManager.getInstance().getAllBooks();
-                                adapter = new customAdapter2(MyBooks_Activity.this, bookList);
+                                adapter = new booksAdapter(MyBooks_Activity.this, bookList);
                                 mListView.setAdapter(adapter);
                                toastMessage(name + " Deleted"); //toast delete message (Not working with R.strings!)
                             }
