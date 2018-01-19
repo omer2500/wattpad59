@@ -36,9 +36,6 @@ public class BookInfo {
 
     //Getters and Setters
 
-    /*private String generateID(){
-        return "book_" + System.currentTimeMillis();
-    }*/
 
     public BookInfo(){
     }
@@ -99,19 +96,11 @@ public class BookInfo {
         iObj.put("name", getName());
         iObj.put("description", getDescription());
         iObj.put("content", getContent());
-        //iObj.put("image", getImage());
         iObj.put("wattpadId", getWattpadId()); // wattpad_id
-        //iObj.put("img", isImageExists());
 
         return iObj;
     }
 
-//	private boolean isImageExists() {
-//		if (image == null || image.length == 0) {
-//			return false;
-//		}
-//		return true;
-//	}
 
     public static String toJson(List<BookInfo> list) {
 

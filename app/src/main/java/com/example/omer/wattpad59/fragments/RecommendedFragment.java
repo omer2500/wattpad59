@@ -16,7 +16,7 @@ import com.example.omer.wattpad59.R;
 public class RecommendedFragment extends Fragment {
 
 
-    //Left untouched by morad's instructions
+    //Left untouched and empty by Murad's instructions
 
     @Nullable
     @Override
